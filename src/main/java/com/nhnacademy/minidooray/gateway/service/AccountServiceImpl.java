@@ -1,4 +1,4 @@
 package com.nhnacademy.minidooray.gateway.service;
 
-public class AccountServiceImpl {
+public class AccountServiceImpl implements AccountService {
 }
