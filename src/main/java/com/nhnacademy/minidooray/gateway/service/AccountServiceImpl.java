@@ -15,6 +15,12 @@ public class AccountServiceImpl implements AccountService {
         this.accountAdaptor = accountAdaptor;
     }
 
+
+    @Override
+    public boolean matches(String id, String password) {
+        return false;
+    }
+
     @Override
     public List<Account> getAccounts() {
         return accountAdaptor.getAccounts();

@@ -1,0 +1,10 @@
+package com.nhnacademy.minidooray.gateway.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class LoginResult {
+    private Boolean result;
+}

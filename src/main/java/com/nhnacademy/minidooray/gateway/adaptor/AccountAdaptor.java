@@ -11,5 +11,6 @@ public interface AccountAdaptor {
 
     Account createAccount(AccountRegisterRequest account);
 
+
     void deleteAccount(String accountId);
 }
