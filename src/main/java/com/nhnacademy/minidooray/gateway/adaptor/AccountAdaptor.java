@@ -1,6 +1,7 @@
 package com.nhnacademy.minidooray.gateway.adaptor;
 
 import com.nhnacademy.minidooray.gateway.domain.Account;
+import com.nhnacademy.minidooray.gateway.model.AccountRegisterRequest;
 import java.util.List;
 
 public interface AccountAdaptor {
@@ -8,7 +9,7 @@ public interface AccountAdaptor {
 
     Account getAccount(String accountId);
 
-    void createAccount(Account account);
+    Account createAccount(AccountRegisterRequest account);
 
     void deleteAccount(String accountId);
 }

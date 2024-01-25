@@ -2,6 +2,7 @@ package com.nhnacademy.minidooray.gateway.service;
 
 import com.nhnacademy.minidooray.gateway.adaptor.AccountAdaptor;
 import com.nhnacademy.minidooray.gateway.domain.Account;
+import com.nhnacademy.minidooray.gateway.model.AccountRegisterRequest;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.stereotype.Service;
@@ -28,12 +29,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void createAccount(Account account) {
-        if (Objects.isNull(account)) {
+    public Account createAccount(AccountRegisterRequest accountRegisterRequest) {
+        if (Objects.isNull(accountRegisterRequest)) {
             throw new NullPointerException("create account null");
         }
-        accountAdaptor.createAccount(account);
-
+        return accountAdaptor.createAccount(accountRegisterRequest);
     }
 
     @Override

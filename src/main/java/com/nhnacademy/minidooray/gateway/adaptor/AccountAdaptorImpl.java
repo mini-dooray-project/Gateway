@@ -2,12 +2,15 @@ package com.nhnacademy.minidooray.gateway.adaptor;
 
 import com.nhnacademy.minidooray.gateway.config.AccountAdaptorProperties;
 import com.nhnacademy.minidooray.gateway.domain.Account;
+import com.nhnacademy.minidooray.gateway.model.AccountRegisterRequest;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @Component
 public class AccountAdaptorImpl implements AccountAdaptor {
     private final AccountAdaptorProperties accountAdaptorProperties;
@@ -55,17 +58,19 @@ public class AccountAdaptorImpl implements AccountAdaptor {
     }
 
     @Override
-    public void createAccount(Account account) {
+    public Account createAccount(AccountRegisterRequest account) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<Account> requestEntity = new HttpEntity<>(account, httpHeaders);
+        log.debug("address:", accountAdaptorProperties.getAddress());
+        HttpEntity<AccountRegisterRequest> requestEntity = new HttpEntity<>(account, httpHeaders);
 
-        ResponseEntity<Account> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts",
+        ResponseEntity<Account> exchange = restTemplate.exchange("http://localhost:8060/api/accounts",
                 HttpMethod.POST,
                 requestEntity,
                 new ParameterizedTypeReference<Account>() {
                 });
+        return exchange.getBody();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.nhnacademy.minidooray.gateway.service;
 
 import com.nhnacademy.minidooray.gateway.domain.Account;
+import com.nhnacademy.minidooray.gateway.model.AccountRegisterRequest;
 import java.util.List;
 
 public interface AccountService {
@@ -8,7 +9,7 @@ public interface AccountService {
 
     Account getAccount(String accountId);
 
-    void createAccount(Account account);
+    Account createAccount(AccountRegisterRequest accountRegisterRequest);
 
     void deleteAccount(String accountId);
 }

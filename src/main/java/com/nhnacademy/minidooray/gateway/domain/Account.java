@@ -1,6 +1,6 @@
 package com.nhnacademy.minidooray.gateway.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import lombok.*;
 
 @Getter
@@ -13,7 +13,7 @@ public class Account {
     private String password;
     private String name;
     private String email;
-    private LocalDateTime createdDate;
-    private LocalDateTime latestLoginDate;
+    private LocalDate createdDate;
+    private LocalDate latestLoginDate;
     private String state;
 }

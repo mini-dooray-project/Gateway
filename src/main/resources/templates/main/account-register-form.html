@@ -10,12 +10,17 @@
     <span th:text="#{id}">:</span>
     <input type="text" name="id"/></br>
     <span th:text="#{pw}">:</span>
-    <input type="password" name="pw"/></br>
+    <input type="password" +name="password"/></br>
     <span th:text="#{name}">:</span></br>
     <input type="text" name="name"/></br>
     <span th:text="#{email}">:</span>
     <input type="text" name="email"/></br>
-
+    <button type="submit">가입하기</button>
 </form>
+<form method="get" action="/">
+    <button type="submit">뒤로 가기</button>
+</form>
+
+
 </body>
 </html>

@@ -2,12 +2,15 @@ package com.nhnacademy.minidooray.gateway.controller;
 
 import com.nhnacademy.minidooray.gateway.model.AccountRegisterRequest;
 import com.nhnacademy.minidooray.gateway.service.AccountService;
+import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+@Slf4j
 @Controller
 @RequestMapping("/api/accounts")
 public class AccountRegisterController {
@@ -24,8 +27,12 @@ public class AccountRegisterController {
     }
 
     @PostMapping("/register")
-    public String doRegister(@RequestParam AccountRegisterRequest request) {
-
+    public String doRegister(@ModelAttribute AccountRegisterRequest request) {
+        log.debug("value:{}", request);
+        if (Objects.isNull(request)) {
+            throw new NullPointerException("doRegister null");
+        }
+        accountService.createAccount(request);
         return "main";
     }
 }
