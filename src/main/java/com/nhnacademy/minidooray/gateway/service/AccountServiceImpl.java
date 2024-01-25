@@ -3,6 +3,8 @@ package com.nhnacademy.minidooray.gateway.service;
 import com.nhnacademy.minidooray.gateway.adaptor.AccountAdaptor;
 import com.nhnacademy.minidooray.gateway.domain.Account;
 import com.nhnacademy.minidooray.gateway.model.AccountRegisterRequest;
+import com.nhnacademy.minidooray.gateway.model.AccountResponse;
+import com.nhnacademy.minidooray.gateway.model.LoginRequest;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,12 @@ public class AccountServiceImpl implements AccountService {
         this.accountAdaptor = accountAdaptor;
     }
 
-
     @Override
-    public boolean matches(String id, String password) {
-        return false;
+    public boolean matches(LoginRequest loginRequest) {
+        if (Objects.isNull(loginRequest)) {
+            throw new NullPointerException("matches null");
+        }
+        return accountAdaptor.matchLogin(loginRequest);
     }
 
     @Override
@@ -27,7 +31,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account getAccount(String accountId) {
+    public AccountResponse getAccount(String accountId) {
         if (Objects.isNull(accountId)) {
             throw new NullPointerException();
         }
