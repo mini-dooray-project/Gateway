@@ -55,7 +55,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
     }
 
     @Override
-    public Account createAccount(Account account) {
+    public void createAccount(Account account) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -66,11 +66,10 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                 requestEntity,
                 new ParameterizedTypeReference<Account>() {
                 });
-        return exchange.getBody();
     }
 
     @Override
-    public Account deleteAccount(String accountId) {
+    public void deleteAccount(String accountId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -81,6 +80,5 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                 requestEntity,
                 new ParameterizedTypeReference<Account>() {
                 }, accountId);
-        return exchange.getBody();
     }
 }

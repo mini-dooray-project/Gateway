@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>회원가입창</p>
+<form method="post" action="/api/accounts/register">
+    <span th:text="#{id}">:</span>
+    <input type="text" name="id"/></br>
+    <span th:text="#{pw}">:</span>
+    <input type="password" name="pw"/></br>
+    <span th:text="#{name}">:</span></br>
+    <input type="text" name="name"/></br>
+    <span th:text="#{email}">:</span>
+    <input type="text" name="email"/></br>
+
+</form>
+</body>
+</html>

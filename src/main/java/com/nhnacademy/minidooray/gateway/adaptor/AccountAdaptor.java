@@ -8,7 +8,7 @@ public interface AccountAdaptor {
 
     Account getAccount(String accountId);
 
-    Account createAccount(Account account);
+    void createAccount(Account account);
 
-    Account deleteAccount(String accountId);
+    void deleteAccount(String accountId);
 }
