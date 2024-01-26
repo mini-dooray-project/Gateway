@@ -7,8 +7,10 @@ import java.util.List;
 public interface TaskApiProjectAdaptor {
     List<ProjectResponse> getProjects();
 
-    List<ProjectResponse> getProject(Long id);
+    ProjectResponse getProject(Long id);
 
     ProjectResponse createProject(ProjectRequest request);
+
+    ProjectResponse updateProject(ProjectRequest projectRequest);
 
 }
