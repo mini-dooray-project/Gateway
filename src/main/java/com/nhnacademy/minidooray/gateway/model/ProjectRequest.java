@@ -5,8 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class ProjectResponse {
-    private Long projectId;
+public class ProjectRequest {
     private Long statusId;
     private String projectName;
 }
