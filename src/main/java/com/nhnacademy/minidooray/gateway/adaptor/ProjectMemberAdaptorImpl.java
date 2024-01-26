@@ -1,6 +1,7 @@
 package com.nhnacademy.minidooray.gateway.adaptor;
 
 import com.nhnacademy.minidooray.gateway.config.TaskAdaptorProperties;
+import com.nhnacademy.minidooray.gateway.model.ProjectMemberModifyRequest;
 import com.nhnacademy.minidooray.gateway.model.ProjectMemberRegisterRequest;
 import com.nhnacademy.minidooray.gateway.model.ProjectMemberResponse;
 import java.util.List;
@@ -52,6 +53,25 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
                 requestEntity,
                 new ParameterizedTypeReference<>() {
                 });
+        if (exchange.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException();
+        }
+        return exchange.getBody();
+    }
+
+    @Override
+    public ProjectMemberResponse updateMember(String memberId, Long projectId, ProjectMemberModifyRequest request) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<ProjectMemberModifyRequest> requestEntity = new HttpEntity<>(request, headers);
+
+        ResponseEntity<ProjectMemberResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/{memberId}/projects/{projectId}",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, memberId, projectId);
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException();
         }
