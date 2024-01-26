@@ -4,7 +4,7 @@ import com.nhnacademy.minidooray.gateway.model.ProjectRequest;
 import com.nhnacademy.minidooray.gateway.model.ProjectResponse;
 import java.util.List;
 
-public interface TaskApiProjectAdaptor {
+public interface ProjectAdaptor {
     List<ProjectResponse> getProjects();
 
     ProjectResponse getProject(Long id);

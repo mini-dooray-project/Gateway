@@ -1,2 +1,4 @@
-package com.nhnacademy.minidooray.gateway.model;public class ProjectModifyRequest {
+package com.nhnacademy.minidooray.gateway.model;
+
+public class ProjectModifyRequest {
 }

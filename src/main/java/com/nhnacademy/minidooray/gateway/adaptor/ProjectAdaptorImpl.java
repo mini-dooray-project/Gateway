@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class TaskApiProjectAdaptorImpl implements TaskApiProjectAdaptor {
+public class ProjectAdaptorImpl implements ProjectAdaptor {
     private final RestTemplate restTemplate;
     private final TaskAdaptorProperties taskAdaptorProperties;
 
-    public TaskApiProjectAdaptorImpl(RestTemplate restTemplate, TaskAdaptorProperties taskAdaptorProperties) {
+    public ProjectAdaptorImpl(RestTemplate restTemplate, TaskAdaptorProperties taskAdaptorProperties) {
         this.restTemplate = restTemplate;
         this.taskAdaptorProperties = taskAdaptorProperties;
     }
