@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@Slf4j
 @RequestMapping("/client")
 public class LoginController {
     private final AccountService accountService;
@@ -34,17 +36,23 @@ public class LoginController {
                           HttpServletRequest request,
                           HttpServletResponse response,
                           ModelMap modelMap) {
-        if (accountService.matches(loginRequest)) {
-            String uuid = UUID.randomUUID().toString();
-            HttpSession session = request.getSession(true);
-            AccountResponse accountResponse = accountService.getAccount(loginRequest.getId());
-            session.setAttribute(uuid, accountResponse);
-            Cookie cookie = new Cookie("login", uuid);
-            response.addCookie(cookie);
-            modelMap.addAttribute("id", session.getId());
-            return "main";
-        }
+        try {
+            if (accountService.matches(loginRequest)) {
+                String uuid = UUID.randomUUID().toString();
+                HttpSession session = request.getSession(true);
 
-        return "redirect:/login";
+                AccountResponse accountResponse = accountService.getAccount(loginRequest.getId());
+                session.setAttribute(uuid, accountResponse);
+
+                Cookie cookie = new Cookie("login", uuid);
+                response.addCookie(cookie);
+
+                modelMap.addAttribute("loginId", session.getId());
+                return "main";
+            }
+
+        } catch (Exception e) {
+        }
+        return "redirect:/client/login";
     }
 }

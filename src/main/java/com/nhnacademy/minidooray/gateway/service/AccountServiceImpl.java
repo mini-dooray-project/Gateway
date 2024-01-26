@@ -19,10 +19,14 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public boolean matches(LoginRequest loginRequest) {
-        if (Objects.isNull(loginRequest)) {
+        if (loginRequest.getId().isEmpty() || loginRequest.getPassword().isEmpty()) {
             throw new NullPointerException("matches null");
         }
-        return accountAdaptor.matchLogin(loginRequest);
+        String result = accountAdaptor.matchLogin(loginRequest).getResult();
+        if ("탈퇴".equals(result)) {
+            return false;
+        }
+        return true;
     }
 
     @Override

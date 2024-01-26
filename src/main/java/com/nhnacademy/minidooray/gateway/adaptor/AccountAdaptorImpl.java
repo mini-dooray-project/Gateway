@@ -5,6 +5,7 @@ import com.nhnacademy.minidooray.gateway.domain.Account;
 import com.nhnacademy.minidooray.gateway.model.AccountRegisterRequest;
 import com.nhnacademy.minidooray.gateway.model.AccountResponse;
 import com.nhnacademy.minidooray.gateway.model.LoginRequest;
+import com.nhnacademy.minidooray.gateway.model.LoginResult;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -33,7 +34,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
         //responseEntity
-        ResponseEntity<List<Account>> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts",
+        ResponseEntity<List<Account>> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/api/accounts",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<List<Account>>() {
@@ -51,7 +52,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
-        ResponseEntity<AccountResponse> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts/{accountId}",
+        ResponseEntity<AccountResponse> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/api/accounts/{accountId}",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<AccountResponse>() {
@@ -82,21 +83,21 @@ public class AccountAdaptorImpl implements AccountAdaptor {
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
-        ResponseEntity<Account> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts/{accountId}",
+        restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts/{accountId}",
                 HttpMethod.DELETE,
                 requestEntity,
-                new ParameterizedTypeReference<Account>() {
+                new ParameterizedTypeReference<>() {
                 }, accountId);
     }
 
     @Override
-    public Boolean matchLogin(LoginRequest loginRequest) {
+    public LoginResult matchLogin(LoginRequest loginRequest) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<LoginRequest> requestEntity = new HttpEntity<>(loginRequest, httpHeaders);
 
-        ResponseEntity<Boolean> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/api/accounts/login",
+        ResponseEntity<LoginResult> exchange = restTemplate.exchange("http://localhost:8060/api/accounts/login",
                 HttpMethod.POST,
                 requestEntity,
                 new ParameterizedTypeReference<>() {

@@ -4,6 +4,7 @@ import com.nhnacademy.minidooray.gateway.domain.Account;
 import com.nhnacademy.minidooray.gateway.model.AccountRegisterRequest;
 import com.nhnacademy.minidooray.gateway.model.AccountResponse;
 import com.nhnacademy.minidooray.gateway.model.LoginRequest;
+import com.nhnacademy.minidooray.gateway.model.LoginResult;
 import java.util.List;
 
 public interface AccountAdaptor {
@@ -15,5 +16,6 @@ public interface AccountAdaptor {
 
     void deleteAccount(String accountId);
 
-    Boolean matchLogin(LoginRequest loginRequest);
+
+    LoginResult matchLogin(LoginRequest loginRequest);
 }

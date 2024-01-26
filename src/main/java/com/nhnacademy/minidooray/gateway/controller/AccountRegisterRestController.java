@@ -2,6 +2,7 @@ package com.nhnacademy.minidooray.gateway.controller;
 
 import com.nhnacademy.minidooray.gateway.domain.Account;
 import com.nhnacademy.minidooray.gateway.model.AccountRegisterRequest;
+import com.nhnacademy.minidooray.gateway.model.AccountResponse;
 import com.nhnacademy.minidooray.gateway.service.AccountService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class AccountRegisterRestController {
     }
 
     @GetMapping("/accounts/{id}")
-    public Account getAccount(@PathVariable String id) {
+    public AccountResponse getAccount(@PathVariable String id) {
         return accountClientService.getAccount(id);
     }
 
