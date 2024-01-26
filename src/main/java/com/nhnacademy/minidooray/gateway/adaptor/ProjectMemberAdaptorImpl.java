@@ -1,6 +1,7 @@
 package com.nhnacademy.minidooray.gateway.adaptor;
 
 import com.nhnacademy.minidooray.gateway.config.TaskAdaptorProperties;
+import com.nhnacademy.minidooray.gateway.model.ProjectMemberRegisterRequest;
 import com.nhnacademy.minidooray.gateway.model.ProjectMemberResponse;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
@@ -39,7 +40,21 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
     }
 
     @Override
-    public ProjectMemberResponse createMember() {
-        return null;
+    public ProjectMemberResponse createMember(ProjectMemberRegisterRequest request) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<ProjectMemberRegisterRequest> requestEntity = new HttpEntity<>(request, headers);
+
+        ResponseEntity<ProjectMemberResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+        if (exchange.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException();
+        }
+        return exchange.getBody();
     }
 }
