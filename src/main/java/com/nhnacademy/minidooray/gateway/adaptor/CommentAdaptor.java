@@ -1,4 +1,4 @@
 package com.nhnacademy.minidooray.gateway.adaptor;
 
-public interface CommnetAdaptor {
+public interface CommentAdaptor {
 }
