@@ -1,2 +1,4 @@
-package com.nhnacademy.minidooray.gateway.model;public class CommentRequest {
+package com.nhnacademy.minidooray.gateway.model;
+
+public class CommentRequest {
 }

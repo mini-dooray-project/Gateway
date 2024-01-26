@@ -1,2 +1,4 @@
-package com.nhnacademy.minidooray.gateway.model;public class TaskResponse {
+package com.nhnacademy.minidooray.gateway.model;
+
+public class TaskResponse {
 }
