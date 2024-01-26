@@ -1,2 +1,4 @@
-package com.nhnacademy.minidooray.gateway.adaptor;public class ProjectMemberAdaptorImpl {
+package com.nhnacademy.minidooray.gateway.adaptor;
+
+public class ProjectMemberAdaptorImpl {
 }
