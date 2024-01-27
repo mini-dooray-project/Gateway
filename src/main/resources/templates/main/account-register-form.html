@@ -1,26 +1,59 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko" xmlns="http://www.w3.org/1999/html">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<p>회원가입창</p>-->
+<!--<form method="post" action="/client/accounts/register">-->
+<!--    <span th:text="#{id}">:</span>-->
+<!--    <input type="text" name="id"/></br>-->
+<!--    <span th:text="#{pw}">:</span>-->
+<!--    <input type="password" +name="password"/></br>-->
+<!--    <span th:text="#{name}">:</span></br>-->
+<!--    <input type="text" name="name"/></br>-->
+<!--    <span th:text="#{email}">:</span>-->
+<!--    <input type="text" name="email"/></br>-->
+<!--    <button type="submit">가입하기</button>-->
+<!--</form>-->
+<!--<form method="get" action="/">-->
+<!--    <button type="submit">뒤로 가기</button>-->
+<!--</form>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/html">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" type="text/css" href="/registerstyles.css"> <!-- CSS 파일 연결 -->
 </head>
 <body>
-<p>회원가입창</p>
-<form method="post" action="/client/accounts/register">
-    <span th:text="#{id}">:</span>
-    <input type="text" name="id"/></br>
-    <span th:text="#{pw}">:</span>
-    <input type="password" +name="password"/></br>
-    <span th:text="#{name}">:</span></br>
-    <input type="text" name="name"/></br>
-    <span th:text="#{email}">:</span>
-    <input type="text" name="email"/></br>
-    <button type="submit">가입하기</button>
-</form>
-<form method="get" action="/">
-    <button type="submit">뒤로 가기</button>
-</form>
-
+<div class="signup-container">
+    <div class="logo">
+        Mini-Dooray!
+    </div>
+    <h2>Sign Up</h2>
+    <form method="post" action="/client/accounts/register">
+        <span th:text="#{id}">:</span>
+        <input type="text" placeholder="Id" name="id" required/></br>
+        <span th:text="#{pw}">:</span>
+        <input type="password" placeholder="Password" name="password" required/></br>
+        <span th:text="#{name}">:</span>
+        <input type="text" name="name" placeholder="Username" required/></br>
+        <span th:text="#{email}">:</span>
+        <input type="text" name="email" placeholder="Email (ex.user@gmail.com)" required/></br>
+        <button class="real-button" type="submit">가입하기</button>
+    </form>
+    <form method="get" action="/">
+        <button class="signup-button" type="submit">뒤로 가기</button>
+    </form>
+</div>
 
 </body>
 </html>
