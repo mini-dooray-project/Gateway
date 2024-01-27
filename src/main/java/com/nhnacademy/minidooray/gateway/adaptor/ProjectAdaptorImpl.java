@@ -1,6 +1,7 @@
 package com.nhnacademy.minidooray.gateway.adaptor;
 
 import com.nhnacademy.minidooray.gateway.config.TaskAdaptorProperties;
+import com.nhnacademy.minidooray.gateway.model.DeleteResponse;
 import com.nhnacademy.minidooray.gateway.model.ProjectRequest;
 import com.nhnacademy.minidooray.gateway.model.ProjectResponse;
 import java.util.List;
@@ -78,7 +79,7 @@ public class ProjectAdaptorImpl implements ProjectAdaptor {
     }
 
     @Override
-    public ProjectResponse updateProject(ProjectRequest projectRequest) {
+    public ProjectResponse updateProject(Long projectId, ProjectRequest projectRequest) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -89,7 +90,26 @@ public class ProjectAdaptorImpl implements ProjectAdaptor {
                 HttpMethod.PUT,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
-                });
+                }, projectId);
+        if (exchange.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException();
+        }
+        return exchange.getBody();
+    }
+
+    @Override
+    public DeleteResponse deleteProject(Long projectId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+
+        ResponseEntity<DeleteResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/projects/{projectId}",
+                HttpMethod.DELETE,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException();
         }
