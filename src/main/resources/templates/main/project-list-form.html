@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>project-list</title>
+</head>
+<body>
+<span>
+    <p>참가한 프로젝트</p>
+  </span>
+<table>
+    <thead>
+    <tr>프로젝트 아이디</tr>
+    <tr>프로젝트 이름</tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projects}">
+        <td th:text="${project.projectId}"></td>
+        <span th:text="${project.projectName}"
+              th:onclick="'window.location.href=\'/client/projects/' + ${project.projectId} + '\'"></span>
+    </tr>
+    </tbody>
+</table>
+<form method="get" action="/">
+    <button type="submit">뒤로가기</button>
+</form>
+</body>
+</html>
