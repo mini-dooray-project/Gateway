@@ -13,13 +13,13 @@ public class ProjectServiceImpl implements ProjectService {
     private final ProjectAdaptor projectAdaptor;
     private final ProjectMemberAdaptor projectMemberAdaptor;
 
+
     public ProjectServiceImpl(ProjectAdaptor projectAdaptor, ProjectMemberAdaptor projectMemberAdaptor) {
         this.projectAdaptor = projectAdaptor;
         this.projectMemberAdaptor = projectMemberAdaptor;
+
     }
 
-    // 리스트로 다 가져와서 처리?
-    // 아니면 하나씩 처리?
     @Override
     public List<Project> participationProject(AccountResponse response) {
         List<Project> projects = new ArrayList<>();
