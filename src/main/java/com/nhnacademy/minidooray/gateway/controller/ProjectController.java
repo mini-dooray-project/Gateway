@@ -31,7 +31,6 @@ public class ProjectController {
     public String viewProjectList(HttpServletRequest request, ModelMap modelMap) {
         Cookie cookie = CookieUtil.getCookie(request.getCookies(), "login");
         HttpSession session = request.getSession(false);
-        log.info("view value: {}", session.getAttribute(cookie.getValue()));
         AccountResponse account = (AccountResponse) session.getAttribute(cookie.getValue());
         List<Project> projects = projectService.participationProject(account);
         modelMap.addAttribute("projects", projects);
@@ -43,14 +42,14 @@ public class ProjectController {
     public String viewProject(
             @PathVariable Long projectId,
             HttpServletRequest request, ModelMap modelMap) {
+        // project ID로 해당 테스크
         Cookie cookie = CookieUtil.getCookie(request.getCookies(), "login");
         HttpSession session = request.getSession(false);
-        log.info("view value: {}", session.getAttribute(cookie.getValue()));
         AccountResponse account = (AccountResponse) session.getAttribute(cookie.getValue());
         List<Project> projects = projectService.participationProject(account);
         modelMap.addAttribute("projects", projects);
 
-        return "project-list-form";
+        return "project-task-form";
     }
 
     @PostMapping

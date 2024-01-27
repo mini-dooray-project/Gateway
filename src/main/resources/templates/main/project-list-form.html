@@ -16,8 +16,10 @@
     <tbody>
     <tr th:each="project : ${projects}">
         <td th:text="${project.projectId}"></td>
-        <span th:text="${project.projectName}"
-              th:onclick="'window.location.href=\'/client/projects/' + ${project.projectId} + '\'"></span>
+        <a th:href="@{'/client/projects/' + ${project.projectId}}">
+            <span th:text="${project.projectName}"></span>
+        </a>
+        </br>
     </tr>
     </tbody>
 </table>
