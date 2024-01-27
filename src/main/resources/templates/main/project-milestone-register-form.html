@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>project-milestone-form</title>
 </head>
 <body>
-$END$
+<form method="post" th:action="@{'/client/projects/'+${projectId}+'/milestone'}">
+    <span>진척도 이름</span>
+    <input type="text" name="milestoneName"></br>
+    <span>시작 날짜</span>
+    <input type="date" name="startDate"></br>
+    <span>마무리 날짜</span>
+    <input type="date" name="milestoneExpireDate"></br>
+
+    <button type="submit">등록하기</button>
+</form>
+<a th:href="@{'/client/projects/' + ${projectId}}"></a>
 </body>
 </html>

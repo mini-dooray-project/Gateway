@@ -1,2 +1,15 @@
-package com.nhnacademy.minidooray.gateway.domain;public class ModifyMilestone {
+package com.nhnacademy.minidooray.gateway.domain;
+
+import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ModifyMilestone {
+    private String milestoneName;
+    private LocalDateTime startDate;
+    private LocalDateTime milestoneExpireDate;
 }

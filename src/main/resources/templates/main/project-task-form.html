@@ -18,7 +18,7 @@
     <tr th:each="task : ${tasks}">
 
         <td>
-            <a th:href="@{'/client/projects/' + ${projectId}+'tasks'+${task.taskId}}">
+            <a th:href="@{'/client/projects/' + ${projectId}+'/tasks/'+${task.taskId}}">
                 <span th:text="${task.taskTitle}"></span>
             </a>
         </td>
@@ -34,6 +34,9 @@
 </table>
 <form method="get" action="/client/projects">
     <button type="submit">뒤로가기</button>
+</form>
+<form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone'}">
+    <button type="submit">진척도 등록</button>
 </form>
 </body>
 </html>

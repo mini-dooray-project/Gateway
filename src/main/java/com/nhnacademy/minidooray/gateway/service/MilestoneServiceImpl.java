@@ -1,6 +1,8 @@
 package com.nhnacademy.minidooray.gateway.service;
 
 import com.nhnacademy.minidooray.gateway.adaptor.MilestoneAdaptor;
+import com.nhnacademy.minidooray.gateway.domain.MilestoneRegister;
+import com.nhnacademy.minidooray.gateway.model.MilestoneRequest;
 import com.nhnacademy.minidooray.gateway.model.MilestoneResponse;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -20,13 +22,14 @@ public class MilestoneServiceImpl implements MilestoneService {
     }
 
     @Override
-    public void createMilestone() {
-        
+    public void createMilestone(MilestoneRegister milestoneRegister, Long projectId) {
+        MilestoneRequest milestoneRequest = new MilestoneRequest(projectId, milestoneRegister.getMilestoneName(),
+                milestoneRegister.getStartDate(), milestoneRegister.getMilestoneExpireDate());
+        milestoneAdaptor.createMilestone(milestoneRequest);
     }
 
     @Override
-    public void updateMilestone() {
-
+    public void updateMilestone(MilestoneRegister milestoneRegister, Long projectId) {
     }
 
     @Override
