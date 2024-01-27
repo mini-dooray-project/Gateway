@@ -1,2 +1,11 @@
-package com.nhnacademy.minidooray.gateway.model;public class TagRequest {
+package com.nhnacademy.minidooray.gateway.model;
+
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@RequiredArgsConstructor
+public class TagRequest {
+    Long projectId;
+    String tagName;
 }
