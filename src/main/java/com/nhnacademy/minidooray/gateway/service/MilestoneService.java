@@ -1,14 +1,16 @@
 package com.nhnacademy.minidooray.gateway.service;
 
-import com.nhnacademy.minidooray.gateway.domain.Milestone;
+import com.nhnacademy.minidooray.gateway.domain.MilestoneRegister;
+import com.nhnacademy.minidooray.gateway.model.MilestoneResponse;
 import java.util.List;
 
 public interface MilestoneService {
-    List<Milestone> getMilestones(Long taskId);
 
-    void createMilestone();
+    List<MilestoneResponse> getMilestones(Long projectId);
 
-    void updateMilestone();
+    void createMilestone(MilestoneRegister milestoneRegister, Long projectId);
+
+    void updateMilestone(MilestoneRegister milestoneRegister, Long projectId);
 
     void deleteMilestone();
 

@@ -73,9 +73,7 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
                 requestEntity,
                 new ParameterizedTypeReference<>() {
                 });
-        if (exchange.getStatusCode() != HttpStatus.OK) {
-            throw new RuntimeException();
-        }
+       
         return exchange.getBody();
     }
 

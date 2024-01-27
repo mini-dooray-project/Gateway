@@ -56,6 +56,26 @@ public class MilestoneAdaptorImpl implements MilestoneAdaptor {
     }
 
     @Override
+    public List<MilestoneResponse> getMilestoneByProjectId(Long projectId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+
+        //responseEntity
+        ResponseEntity<List<MilestoneResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/milestones/projects/{projectId}",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
+        if (exchange.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException();
+        }
+        return exchange.getBody();
+    }
+
+    @Override
     public MilestoneResponse createMilestone(MilestoneRequest milestoneRequest) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

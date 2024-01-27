@@ -72,7 +72,7 @@ public class ProjectAdaptorImpl implements ProjectAdaptor {
                 requestEntity,
                 new ParameterizedTypeReference<>() {
                 });
-        if (exchange.getStatusCode() != HttpStatus.OK) {
+        if (exchange.getStatusCode() != HttpStatus.CREATED) {
             throw new RuntimeException();
         }
         return exchange.getBody();

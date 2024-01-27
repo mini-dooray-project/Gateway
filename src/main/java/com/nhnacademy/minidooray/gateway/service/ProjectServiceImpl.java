@@ -7,8 +7,10 @@ import com.nhnacademy.minidooray.gateway.model.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectAdaptor projectAdaptor;
@@ -35,13 +37,13 @@ public class ProjectServiceImpl implements ProjectService {
 
 
     @Override
-    public void createProject(ProjectRequest projectRequest, String accountId) {
-        if (Objects.isNull(projectRequest)) {
+    public void createProject(ProjectRegisterRequest projectRegisterRequest, String accountId) {
+        if (Objects.isNull(projectRegisterRequest)) {
             throw new NullPointerException("project request null");
         }
-
-        projectRequest.setStatusId(1L);
+        ProjectRequest projectRequest = new ProjectRequest(1L, projectRegisterRequest.getProjectName());
         ProjectResponse response = projectAdaptor.createProject(projectRequest);
+        log.info("value:{}", response);
         ProjectMemberRegisterRequest request = new ProjectMemberRegisterRequest(accountId, response.getProjectId(), response.getStatusId());
         projectMemberAdaptor.createMember(request);
     }

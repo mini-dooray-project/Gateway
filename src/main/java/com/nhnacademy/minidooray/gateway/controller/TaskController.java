@@ -21,12 +21,19 @@ public class TaskController {
     }
 
     @GetMapping("/{projectId}")
-    public String viewTask(@PathVariable Long projectId, ModelMap modelMap) {
+    public String viewTasks(@PathVariable Long projectId, ModelMap modelMap) {
         List<TaskViewModel> taskViewModelList = taskService.getTasks(projectId);
         log.info("task view model:{}", taskViewModelList);
 
         modelMap.addAttribute("projectId", projectId);
         modelMap.addAttribute("tasks", taskViewModelList);
         return "project-task-form";
+    }
+
+    @GetMapping("/{projectId}/tasks/{taskId}")
+    public String viewTaskContent(@PathVariable(name = "projectId") Long projectId,
+                                  @PathVariable(name = "taskId") Long taskId) {
+        
+        return "project-task-content-form";
     }
 }

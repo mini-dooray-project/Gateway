@@ -1,23 +1,35 @@
 package com.nhnacademy.minidooray.gateway.service;
 
-import com.nhnacademy.minidooray.gateway.domain.Milestone;
+import com.nhnacademy.minidooray.gateway.adaptor.MilestoneAdaptor;
+import com.nhnacademy.minidooray.gateway.domain.MilestoneRegister;
+import com.nhnacademy.minidooray.gateway.model.MilestoneRequest;
+import com.nhnacademy.minidooray.gateway.model.MilestoneResponse;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MilestoneServiceImpl implements MilestoneService {
+    private MilestoneAdaptor milestoneAdaptor;
 
-    @Override
-    public List<Milestone> getMilestones(Long taskId) {
-        return null;
+    public MilestoneServiceImpl(MilestoneAdaptor milestoneAdaptor) {
+        this.milestoneAdaptor = milestoneAdaptor;
     }
 
     @Override
-    public void createMilestone() {
+    public List<MilestoneResponse> getMilestones(Long projectId) {
+        return milestoneAdaptor.getMilestoneByProjectId(projectId);
 
     }
 
     @Override
-    public void updateMilestone() {
+    public void createMilestone(MilestoneRegister milestoneRegister, Long projectId) {
+        MilestoneRequest milestoneRequest = new MilestoneRequest(projectId, milestoneRegister.getMilestoneName(),
+                milestoneRegister.getStartDate(), milestoneRegister.getMilestoneExpireDate());
+        milestoneAdaptor.createMilestone(milestoneRequest);
+    }
 
+    @Override
+    public void updateMilestone(MilestoneRegister milestoneRegister, Long projectId) {
     }
 
     @Override

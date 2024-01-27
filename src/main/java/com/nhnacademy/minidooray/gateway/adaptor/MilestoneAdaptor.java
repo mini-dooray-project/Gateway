@@ -10,6 +10,8 @@ public interface MilestoneAdaptor {
 
     MilestoneResponse getMilestone(Long milestoneId);
 
+    List<MilestoneResponse> getMilestoneByProjectId(Long projectId);
+
     MilestoneResponse createMilestone(MilestoneRequest milestoneRequest);
 
     MilestoneResponse updateMilestone(Long milestoneId, MilestoneRequest milestoneRequest);
