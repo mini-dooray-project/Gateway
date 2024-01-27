@@ -1,7 +1,7 @@
 package com.nhnacademy.minidooray.gateway.controller;
 
 import com.nhnacademy.minidooray.gateway.model.AccountResponse;
-import com.nhnacademy.minidooray.gateway.model.ProjectRequest;
+import com.nhnacademy.minidooray.gateway.model.ProjectRegisterRequest;
 import com.nhnacademy.minidooray.gateway.service.ProjectService;
 import com.nhnacademy.minidooray.gateway.util.CookieUtil;
 import javax.servlet.http.Cookie;
@@ -29,15 +29,15 @@ public class ProjectRegisterController {
     }
 
     @PostMapping("/register")
-    public String doRegister(@RequestParam ProjectRequest registerRequest,
+    public String doRegister(@RequestParam String projectName,
                              ModelMap modelMap,
                              HttpServletRequest request) {
         Cookie cookie = CookieUtil.getCookie(request.getCookies(), "login");
         HttpSession session = request.getSession(false);
         AccountResponse account = (AccountResponse) session.getAttribute(cookie.getValue());
+        ProjectRegisterRequest projectRegisterRequest = new ProjectRegisterRequest(projectName);
+        projectService.createProject(projectRegisterRequest, account.getId());
 
-        projectService.createProject(registerRequest, account.getId());
-
-        return "redirect:/client/projects";
+        return "redirect:/";
     }
 }
