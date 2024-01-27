@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>project-register</title>
+    <link rel="stylesheet" type="text/css" href="/project-registerstyles.css">
 </head>
 <body>
-<form method="post" action="/client/projects">
-    <span th:text="#{projectName}"></span>
-    <input type="text" name="projectName"></br>
-    <button type="submit" >등록하기</button>
-</form>
-<form method="get" action="/client/tag">
-    <button type="submit">태그 등록하기</button>
-</form>
-<a href="main.html"/>
+<div class="top-bar">
+    <h2> <span onclick="location.href='/'" class="home-link">Mini-Dooray!</span> | <span>프로젝트</span></h2>
+    <form th:method="post" action="/client/logout">
+        <button type="submit" class="logout-button">로그아웃</button>
+    </form>
+</div>
+
+<div class="main-content">
+    <h2>프로젝트 생성</h2>
+    <br>
+    <form method="post" action="/client/projects">
+        <span th:text="#{projectName}" style="font-weight: bold;">프로젝트명:</span>
+        <p>     </p>
+        <input type="text" name="projectName" placeholder="프로젝트명을 입력하세요" required/>
+        <button type="submit" class="create-button">등록하기</button>
+        <br>
+    </form>
+    <a href="main.html"/>
+</div>
 </body>
 </html>

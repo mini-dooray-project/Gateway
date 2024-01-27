@@ -1,8 +1,13 @@
 /* mainstyles.css */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
 }
 
 /* 상단 파란색 바 스타일 */
@@ -29,8 +34,7 @@ body {
     margin-right: auto; /* 자동으로 오른쪽으로 이동 */
 }
 
-/* 로그인 및 회원 가입 버튼 스타일 */
-.login-button, .register-button, .logout-button, .projects-button, .create-button {
+.logout-button {
     padding: 10px 20px;
     background-color: transparent; /* 배경 투명 */
     color: white; /* 흰색 */
@@ -39,30 +43,38 @@ body {
     cursor: pointer;
     font-family: 'Comic Sans MS', cursive; /* 귀여운 폰트 */
     font-size: 15px; /* 폰트 사이즈 */
-}
-
-/* 회원 가입 버튼 오른쪽 정렬 */
-.register-button {
-    margin-left: auto; /* 자동으로 오른쪽으로 이동 */
-}
-
-/* 프로젝트 및 프로젝트 생성 버튼 오른쪽 정렬 */
-.projects-button, .create-button, .logout-button {
-    margin-left: auto; /* 왼쪽 여백 추가 */
-}
-.create-button {
     margin-right: 27px;
-}
-
-/* 로그인 버튼 왼쪽 여백 조절 */
-.login-button {
-    margin-right: 27px; /* 왼쪽 여백 추가 */
 }
 
 /* 예시로 내용 추가 */
 .main-content {
-    margin-top: 1.5cm; /* 상단 바와 겹치지 않도록 페이지 컨텐츠의 여백을 조정 */
+    margin-top: 1.9cm; /* 상단 바와 겹치지 않도록 페이지 컨텐츠의 여백을 조정 */
     padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 1150px;
+}
+
+.main-content input[type="text"] {
+    width: 950px; /* 입력란 너비 조정 */
+    padding: 8px; /* 입력란 내부 여백 설정 */
+    font-size: 13px; /* 폰트 사이즈 설정 */
+}
+
+.create-button[type="submit"] {
+    padding: 7px 20px;
+    background-color: #005eff; /* 배경색 */
+    color: white; /* 글자색 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive; /* 폰트 */
+    font-size: 15px; /* 폰트 크기 */
+}
+
+.create-button[type="submit"]:hover {
+    background-color: #0056b3; /* 마우스 호버시 배경색 */
 }
 
 /* 홈 링크 스타일 */
