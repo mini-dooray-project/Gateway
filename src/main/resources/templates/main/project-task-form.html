@@ -5,6 +5,27 @@
     <title>projec-task</title>
 </head>
 <body>
-
+<span>
+    <p>전체 업무</p>
+  </span>
+<table>
+    <thead>
+    <tr>업무</tr>
+    <tr>작성자</tr>
+    <tr>진척도</tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projects}">
+        <td th:text="${project.projectId}"></td>
+        <a th:href="@{'/client/projects/' + ${project.projectId}}">
+            <span th:text="${project.projectName}"></span>
+        </a>
+        </br>
+    </tr>
+    </tbody>
+</table>
+<form method="get" action="/client/projects">
+    <button type="submit">뒤로가기</button>
+</form>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.nhnacademy.minidooray.gateway.config.TaskAdaptorProperties;
 import com.nhnacademy.minidooray.gateway.model.DeleteResponse;
 import com.nhnacademy.minidooray.gateway.model.TaskRequest;
 import com.nhnacademy.minidooray.gateway.model.TaskResponse;
+import com.nhnacademy.minidooray.gateway.model.TaskResponseByProjectId;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -42,14 +43,14 @@ public class TaskAdaptorImpl implements TaskAdaptor {
     }
 
     @Override
-    public List<TaskResponse> getTestsByProjectId(Long projectId) {
+    public List<TaskResponseByProjectId> getTestsByProjectId(Long projectId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
-        ResponseEntity<List<TaskResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/tasks/projects/{projectId}",
+        ResponseEntity<List<TaskResponseByProjectId>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/tasks/projects/{projectId}",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<>() {

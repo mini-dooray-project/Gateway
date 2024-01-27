@@ -3,12 +3,13 @@ package com.nhnacademy.minidooray.gateway.adaptor;
 import com.nhnacademy.minidooray.gateway.model.DeleteResponse;
 import com.nhnacademy.minidooray.gateway.model.TaskRequest;
 import com.nhnacademy.minidooray.gateway.model.TaskResponse;
+import com.nhnacademy.minidooray.gateway.model.TaskResponseByProjectId;
 import java.util.List;
 
 public interface TaskAdaptor {
     List<TaskResponse> getTasks();
 
-    List<TaskResponse> getTestsByProjectId(Long projectId);
+    List<TaskResponseByProjectId> getTestsByProjectId(Long projectId);
 
     TaskResponse getTask(Long taskId);
 
