@@ -2,16 +2,24 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/mainstyles.css">
 </head>
 <body>
 
-    <form method="post" action="/client/login" >
-        <span th:text="#{id}">:</span>
-        <input type="text" name="id"/></br>
-        <span th:text="#{pw}">:</span>
-        <input type="password" name="password"/></br>
-        <button type="submit">로그인</button>
+<div class="login-container">
+    <div class="logo">
+        Mini-Dooray!
+    </div>
+    <h2>Login</h2>
+    <form method="post" action="/client/login">
+        <input type="text" placeholder="Username" name="id" required>
+        <input type="password" placeholder="Password" name="password" required>
+        <button class="real-button" type="submit">Login</button>
     </form>
+    <button class="signup-button">회원가입</button>
+</div>
+
 </body>
 </html>
