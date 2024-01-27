@@ -48,9 +48,7 @@ public class LoginController {
                 cookie.setPath("/");
                 cookie.setMaxAge(60 * 30);
                 response.addCookie(cookie);
-
-
-                redirectAttributes.addFlashAttribute("loginId", session.getId());
+                
                 return "redirect:/";
             }
 

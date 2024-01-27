@@ -24,26 +24,15 @@
         <form method="post" action="/client/logout">
             <button type="submit">로그아웃</button>
         </form>
+        <form method="get" action="/client/projects">
+            <button type="submit">프로젝트 목록보기</button>
+        </form>
+        <form method="get" action="/client/projects/register">
+            <button type="submit">프로젝트 생성</button>
+        </form>
     </span>
 </div>
 
-<div th:if="${loginId} != null">
-        <span>
-            <p>참가한 프로젝트</p>
-        </span>
-    <table>
-        <thead>
-        <tr>프로젝트 아이디</tr>
-        <tr>프로젝트 이름</tr>
-        </thead>
-        <tbody>
-        <tr th:each="project : ${projects}">
-            <td th:text="${project.projectId}"></td>
-            <td th:text="${project.projectName}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 
 </body>
 </html>
