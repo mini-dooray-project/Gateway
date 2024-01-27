@@ -1,2 +1,4 @@
-package com.nhnacademy.minidooray.gateway.service;public class MilestoneServiceImpl {
+package com.nhnacademy.minidooray.gateway.service;
+
+public class MilestoneServiceImpl implements MilestoneService {
 }

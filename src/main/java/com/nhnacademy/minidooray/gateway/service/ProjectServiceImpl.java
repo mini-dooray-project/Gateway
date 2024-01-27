@@ -6,6 +6,7 @@ import com.nhnacademy.minidooray.gateway.domain.Project;
 import com.nhnacademy.minidooray.gateway.model.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,17 +33,16 @@ public class ProjectServiceImpl implements ProjectService {
         return projects;
     }
 
-    /**
-     * create에 넣어야 할 것
-     * project
-     * project status
-     * project member
-     *
-     * @param projectRegisterRequest
-     */
+
     @Override
-    public void createProject(ProjectRegisterRequest projectRegisterRequest) {
-        ProjectRequest projectRequest = new ProjectRequest();
-        projectAdaptor.createProject(projectRequest);
+    public void createProject(ProjectRequest projectRequest, String accountId) {
+        if (Objects.isNull(projectRequest)) {
+            throw new NullPointerException("project request null");
+        }
+
+        projectRequest.setStatusId(1L);
+        ProjectResponse response = projectAdaptor.createProject(projectRequest);
+        ProjectMemberRegisterRequest request = new ProjectMemberRegisterRequest(accountId, response.getProjectId(), response.getStatusId());
+        projectMemberAdaptor.createMember(request);
     }
 }
