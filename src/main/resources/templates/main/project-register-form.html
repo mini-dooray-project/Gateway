@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="top-bar">
-    <h2> <span onclick="location.href='/'" class="home-link">Mini-Dooray!</span> | <span>프로젝트</span></h2>
+    <h2><span onclick="location.href='/'" class="home-link">Mini-Dooray!</span> | <span>프로젝트</span></h2>
     <form th:method="post" action="/client/logout">
         <button type="submit" class="logout-button">로그아웃</button>
     </form>
@@ -18,8 +18,8 @@
     <h2>프로젝트 생성</h2>
     <br>
     <form method="post" action="/client/projects">
-        <span th:text="#{projectName}" style="font-weight: bold;">프로젝트명:</span>
-        <p>     </p>
+        <span style="font-weight: bold;">프로젝트명:</span>
+        <p></p>
         <input type="text" name="projectName" placeholder="프로젝트명을 입력하세요" required/>
         <button type="submit" class="create-button">등록하기</button>
         <br>

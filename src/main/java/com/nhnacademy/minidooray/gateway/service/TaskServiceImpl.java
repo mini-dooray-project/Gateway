@@ -2,6 +2,7 @@ package com.nhnacademy.minidooray.gateway.service;
 
 import com.nhnacademy.minidooray.gateway.adaptor.MilestoneAdaptor;
 import com.nhnacademy.minidooray.gateway.adaptor.TaskAdaptor;
+import com.nhnacademy.minidooray.gateway.domain.Comment;
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
 import com.nhnacademy.minidooray.gateway.model.TaskRequest;
 import com.nhnacademy.minidooray.gateway.model.TaskResponse;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class TaskServiceImpl implements TaskService {
     private final TaskAdaptor taskAdaptor;
     private final MilestoneAdaptor milestoneAdaptor;
-    
+
 
     public TaskServiceImpl(TaskAdaptor taskAdaptor, MilestoneAdaptor milestoneAdaptor) {
         this.taskAdaptor = taskAdaptor;
@@ -52,5 +53,10 @@ public class TaskServiceImpl implements TaskService {
             throw new NullPointerException();
         }
         taskAdaptor.createTask(taskRequest);
+    }
+
+    @Override
+    public List<Comment> getComments(Long taskID) {
+        return null;
     }
 }
