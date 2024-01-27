@@ -37,14 +37,12 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskViewModel getTask(Long taskId) {
+    public TaskResponse getTask(Long taskId) {
         TaskResponse taskResponse = taskAdaptor.getTask(taskId);
         if (Objects.isNull(taskResponse)) {
             throw new NullPointerException();
         }
-
-        return new TaskViewModel(taskResponse.getTaskId(), taskResponse.getTitle(),
-                taskResponse.getRegistrantAccount(), taskResponse.getMilestoneName());
+        return taskResponse;
     }
 
     @Override

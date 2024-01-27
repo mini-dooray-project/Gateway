@@ -32,8 +32,12 @@ public class TaskController {
 
     @GetMapping("/{projectId}/tasks/{taskId}")
     public String viewTaskContent(@PathVariable(name = "projectId") Long projectId,
-                                  @PathVariable(name = "taskId") Long taskId) {
-        
+                                  @PathVariable(name = "taskId") Long taskId,
+                                  ModelMap modelMap) {
+        taskService.getTask(taskId);
+
+        modelMap.addAttribute("projectId", projectId);
+        modelMap.addAttribute("taskId", taskId);
         return "project-task-content-form";
     }
 }

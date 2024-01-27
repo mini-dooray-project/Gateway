@@ -6,6 +6,11 @@
 </head>
 <body>
 <p>task content</p>
+<span></span>
 
+
+<form method="get" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/modify'}">
+    <button type="submit">내용 수정하기</button>
+</form>
 </body>
 </html>
