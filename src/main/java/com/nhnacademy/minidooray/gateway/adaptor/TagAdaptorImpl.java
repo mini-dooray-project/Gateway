@@ -1,2 +1,4 @@
-package com.nhnacademy.minidooray.gateway.adaptor;public class TagAdaptorImpl {
+package com.nhnacademy.minidooray.gateway.adaptor;
+
+public class TagAdaptorImpl {
 }
