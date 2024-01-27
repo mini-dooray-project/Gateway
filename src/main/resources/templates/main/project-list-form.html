@@ -1,31 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>project-list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 목록</title>
+    <link rel="stylesheet" type="text/css" href="/project-liststyles.css">
+
 </head>
 <body>
-<span>
-    <p>참가한 프로젝트</p>
-  </span>
-<table>
-    <thead>
-    <tr>프로젝트 아이디</tr>
-    <tr>프로젝트 이름</tr>
-    </thead>
-    <tbody>
-    <tr th:each="project : ${projects}">
-        <td th:text="${project.projectId}"></td>
-        <td>
-            <a th:href="@{'/client/projects/' + ${project.projectId}}">
-                <span th:text="${project.projectName}"></span>
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<form method="get" action="/">
-    <button type="submit">뒤로가기</button>
-</form>
+<div class="top-bar">
+    <h2><span onclick="location.href='/'" class="home-link">Mini-Dooray!</span> | <span>프로젝트</span></h2>
+    <form th:method="post" action="/client/logout">
+        <button type="submit" class="logout-button">로그아웃</button>
+    </form>
+</div>
+<div class="container">
+    <h1>프로젝트 목록</h1>
+    <div class="project-list">
+        <table>
+            <thead>
+            <tr>
+                <th><i class="fas fa-folder-open"></i>번호</th>
+                <th>프로젝트 이름</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project : ${projects}">
+                <td><i class="fas fa-file-alt"></i> <span th:text="${project.projectId}"></span></td>
+                <td>
+                    <a th:href="@{'/client/projects/' + ${project.projectId}}">
+                        <span th:text="${project.projectName}"></span>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <form method="get" action="/">
+        <button type="submit" class="back">뒤로가기</button>
+    </form>
+</div>
 </body>
 </html>

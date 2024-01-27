@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+/* 상단 파란색 바 스타일 */
+.top-bar {
+    background-color: #396ac8; /* 파란색 */
+    height: 1.3cm; /* 높이 1.2cm */
+    width: 100%;
+    position: fixed; /* 화면 상단에 고정 */
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px; /* 오른쪽 여백 추가 */
+}
+
+/* Mini-Dooray 텍스트 스타일 */
+.top-bar h2 {
+    margin: 0;
+    font-size: 16px; /* 폰트 사이즈 */
+    color: white; /* 흰색 */
+    font-family: 'Comic Sans MS', cursive; /* 귀여운 폰트 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능하도록 설정 */
+    margin-right: auto; /* 자동으로 오른쪽으로 이동 */
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: transparent; /* 배경 투명 */
+    color: white; /* 흰색 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive; /* 귀여운 폰트 */
+    font-size: 15px; /* 폰트 사이즈 */
+    margin-right: 27px;
+}
+
+/* 홈 링크 스타일 */
+.home-link {
+    color: white; /* 흰색 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.task-list table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.task-list table th,
+.task-list table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.task-list table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.task-list table tr:hover {
+    background-color: #f9f9f9;
+}
