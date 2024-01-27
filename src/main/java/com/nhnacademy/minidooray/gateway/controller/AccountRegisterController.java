@@ -33,6 +33,6 @@ public class AccountRegisterController {
             throw new NullPointerException("doRegister null");
         }
         accountService.createAccount(request);
-        return "main";
+        return "redirect:/";
     }
 }
