@@ -1,6 +1,6 @@
 <!-- main.html -->
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 <body>
 
 <div class="top-bar">
-    <h2 onclick="location.href=''" class="home-link">Mini-Dooray!</h2>
+    <h2> <span onclick="location.href=''" class="home-link">Mini-Dooray!</span> | <span>홈</span></h2>
     <button th:if="${loginId} == null" onclick="location.href='/client/accounts/register'" class="register-button">회원 가입</button>
     <button th:if="${loginId} == null" onclick="location.href='/client/login'" class="login-button">로그인</button>
     <form th:unless="${loginId} == null" method="post" action="/client/logout">
