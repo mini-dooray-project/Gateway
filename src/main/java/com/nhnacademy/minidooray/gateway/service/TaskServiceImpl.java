@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class TaskServiceImpl implements TaskService {
     private final TaskAdaptor taskAdaptor;
     private final MilestoneAdaptor milestoneAdaptor;
+    
 
     public TaskServiceImpl(TaskAdaptor taskAdaptor, MilestoneAdaptor milestoneAdaptor) {
         this.taskAdaptor = taskAdaptor;
