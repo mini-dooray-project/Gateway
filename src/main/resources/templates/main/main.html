@@ -25,9 +25,24 @@
             <button type="submit">로그아웃</button>
         </form>
     </span>
-    <span th:if="${loginId} != null">
-    내가 맡은 업무
-    </span>
+</div>
+
+<div th:if="${loginId} != null">
+        <span>
+            <p>참가한 프로젝트</p>
+        </span>
+    <table>
+        <thead>
+        <tr>프로젝트 아이디</tr>
+        <tr>프로젝트 이름</tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${projects}">
+            <td th:text="${project.projectId}"></td>
+            <td th:text="${project.projectName}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>

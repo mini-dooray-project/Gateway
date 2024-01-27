@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -35,7 +35,7 @@ public class LoginController {
     public String doLogin(@ModelAttribute LoginRequest loginRequest,
                           HttpServletRequest request,
                           HttpServletResponse response,
-                          ModelMap modelMap) {
+                          RedirectAttributes redirectAttributes) {
         try {
             if (accountService.matches(loginRequest)) {
                 String uuid = UUID.randomUUID().toString();
@@ -45,11 +45,15 @@ public class LoginController {
                 session.setAttribute(uuid, accountResponse);
 
                 Cookie cookie = new Cookie("login", uuid);
+                cookie.setPath("/");
+                cookie.setMaxAge(60 * 30);
                 response.addCookie(cookie);
 
-                modelMap.addAttribute("loginId", session.getId());
-                return "main";
+
+                redirectAttributes.addFlashAttribute("loginId", session.getId());
+                return "redirect:/";
             }
+
 
         } catch (Exception e) {
         }

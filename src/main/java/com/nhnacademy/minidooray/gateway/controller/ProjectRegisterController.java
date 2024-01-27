@@ -14,7 +14,7 @@ public class ProjectRegisterController {
         this.projectService = projectService;
     }
 
-    @GetMapping
+    @GetMapping("/register")
     public String viewRegisterForm() {
         return "project-register-form";
     }

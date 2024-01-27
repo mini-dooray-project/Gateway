@@ -1,12 +1,15 @@
 package com.nhnacademy.minidooray.gateway.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Project {
     private Long projectId;
     private String projectName;
-    private String status;
+    private Long status;
+    private String authorityName;
 }
