@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,19 +37,6 @@ public class ProjectController {
         return "project-list-form";
     }
 
-    @GetMapping("/{projectId}")
-    public String viewProject(
-            @PathVariable Long projectId,
-            HttpServletRequest request, ModelMap modelMap) {
-        // project ID로 해당 테스크
-        Cookie cookie = CookieUtil.getCookie(request.getCookies(), "login");
-        HttpSession session = request.getSession(false);
-        AccountResponse account = (AccountResponse) session.getAttribute(cookie.getValue());
-        List<Project> projects = projectService.participationProject(account);
-        modelMap.addAttribute("projects", projects);
-
-        return "project-task-form";
-    }
 
     @PostMapping
     public String viewProjects(HttpServletRequest request,

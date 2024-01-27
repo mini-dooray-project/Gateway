@@ -15,12 +15,20 @@
     <tr>진척도</tr>
     </thead>
     <tbody>
-    <tr th:each="project : ${projects}">
-        <td th:text="${project.projectId}"></td>
-        <a th:href="@{'/client/projects/' + ${project.projectId}}">
-            <span th:text="${project.projectName}"></span>
-        </a>
-        </br>
+    <tr th:each="task : ${tasks}">
+
+        <td>
+            <a th:href="@{'/client/projects/' + ${projectId}+'tasks'+${task.taskId}}">
+                <span th:text="${task.taskTitle}"></span>
+            </a>
+        </td>
+
+        <td>
+            <span th:text="${task.registrantAccount}"></span>
+        </td>
+        <td>
+            <span th:text="${task.milestoneName}"></span>
+        </td>
     </tr>
     </tbody>
 </table>

@@ -16,10 +16,11 @@
     <tbody>
     <tr th:each="project : ${projects}">
         <td th:text="${project.projectId}"></td>
-        <a th:href="@{'/client/projects/' + ${project.projectId}}">
-            <span th:text="${project.projectName}"></span>
-        </a>
-        </br>
+        <td>
+            <a th:href="@{'/client/projects/' + ${project.projectId}}">
+                <span th:text="${project.projectName}"></span>
+            </a>
+        </td>
     </tr>
     </tbody>
 </table>
