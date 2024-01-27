@@ -1,78 +1,72 @@
+/* mainstyles.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+}
+
+/* 상단 파란색 바 스타일 */
+.top-bar {
+    background-color: #396ac8; /* 파란색 */
+    height: 1.3cm; /* 높이 1.2cm */
+    width: 100%;
+    position: fixed; /* 화면 상단에 고정 */
+    top: 0;
+    left: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    padding-left: 20px;
+    padding-right: 20px; /* 오른쪽 여백 추가 */
 }
 
-.login-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 300px;
+/* Mini-Dooray 텍스트 스타일 */
+.top-bar h2 {
+    margin: 0;
+    font-size: 16px; /* 폰트 사이즈 */
+    color: white; /* 흰색 */
+    font-family: 'Comic Sans MS', cursive; /* 귀여운 폰트 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능하도록 설정 */
+    margin-right: auto; /* 자동으로 오른쪽으로 이동 */
 }
 
-.login-container h2 {
-    margin-top: 0;
-    text-align: center;
-}
-
-.login-container input[type="text"],
-.login-container input[type="password"],
-.login-container input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.real-button {
-    background-color: #005eff;
-    color: white;
+/* 로그인 및 회원 가입 버튼 스타일 */
+.login-button, .register-button, .logout-button, .projects-button, .create-button {
+    padding: 10px 20px;
+    background-color: transparent; /* 배경 투명 */
+    color: white; /* 흰색 */
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 25px;
-    outline: none;
+    font-family: 'Comic Sans MS', cursive; /* 귀여운 폰트 */
+    font-size: 15px; /* 폰트 사이즈 */
 }
 
-.real-button:hover {
-    background-color: #0056b3;
+/* 회원 가입 버튼 오른쪽 정렬 */
+.register-button {
+    margin-left: auto; /* 자동으로 오른쪽으로 이동 */
 }
 
-.signup-button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 10px;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 14px;
-    color: black;
-    transition: color 0.3s ease;
+/* 프로젝트 및 프로젝트 생성 버튼 오른쪽 정렬 */
+.projects-button, .create-button, .logout-button {
+    margin-left: auto; /* 왼쪽 여백 추가 */
+}
+.create-button {
+    margin-right: 27px;
 }
 
-.signup-button:hover {
-    color: #0056b3;
+/* 로그인 버튼 왼쪽 여백 조절 */
+.login-button {
+    margin-right: 27px; /* 왼쪽 여백 추가 */
 }
 
-.logo {
-    text-align: center;
-    margin-bottom: 20px;
-    font-family: 'Comic Sans MS', cursive;
-    color: #005eff;
-    font-size: 20px;
-    font-weight: bold;
+/* 예시로 내용 추가 */
+.main-content {
+    margin-top: 1.5cm; /* 상단 바와 겹치지 않도록 페이지 컨텐츠의 여백을 조정 */
+    padding: 20px;
+}
+
+/* 홈 링크 스타일 */
+.home-link {
+    color: white; /* 흰색 */
+    text-decoration: none; /* 밑줄 제거 */
 }
