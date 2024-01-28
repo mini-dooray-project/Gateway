@@ -54,7 +54,6 @@
     <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tag'}" style="display: inline-block;">
         <button type="submit" class="tag-button" formtarget="iframe-test">태그 등록</button>
     </form>
-
     <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tasks/register'}" style="display: inline-block;">
         <button type="submit" class="register-button" formtarget="iframe-test" >게시글 등록</button>
     </form>
@@ -62,8 +61,6 @@
     <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/member'}" style="display: inline-block;">
         <button type="submit" class="member-button" formtarget="iframe-test">멤버 보기</button>
     </form>
-
-
     <table>
         <thead>
         <tr>
@@ -96,7 +93,6 @@
 <div class="test" >
 <iframe id="iframe-test" name="iframe-test"></iframe>
 </div>
-
 </div>
 </body>
 </html>

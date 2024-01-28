@@ -33,7 +33,6 @@ public class AccountAdaptorImpl implements AccountAdaptor {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
-        //responseEntity
         ResponseEntity<List<Account>> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/api/accounts",
                 HttpMethod.GET,
                 requestEntity,

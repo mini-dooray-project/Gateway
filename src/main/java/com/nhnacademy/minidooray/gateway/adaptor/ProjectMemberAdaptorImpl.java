@@ -1,9 +1,9 @@
 package com.nhnacademy.minidooray.gateway.adaptor;
 
 import com.nhnacademy.minidooray.gateway.config.TaskAdaptorProperties;
-import com.nhnacademy.minidooray.gateway.model.CommentRequest;
-import com.nhnacademy.minidooray.gateway.model.CommentResponse;
-import com.nhnacademy.minidooray.gateway.model.DeleteResponse;
+import com.nhnacademy.minidooray.gateway.model.ProjectMemberModifyRequest;
+import com.nhnacademy.minidooray.gateway.model.ProjectMemberRegisterRequest;
+import com.nhnacademy.minidooray.gateway.model.ProjectMemberResponse;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -11,18 +11,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class CommentAdaptorImpl implements CommentAdaptor {
+public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
     private RestTemplate restTemplate;
     private TaskAdaptorProperties taskAdaptorProperties;
 
-    public CommentAdaptorImpl(RestTemplate restTemplate, TaskAdaptorProperties taskAdaptorProperties) {
+    public ProjectMemberAdaptorImpl(RestTemplate restTemplate, TaskAdaptorProperties taskAdaptorProperties) {
         this.restTemplate = restTemplate;
         this.taskAdaptorProperties = taskAdaptorProperties;
     }
 
     @Override
-    public List<CommentResponse> getCommentByTask(Long taskId) {
-
+    public List<ProjectMemberResponse> getMembersByMemberId(String memberId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -30,11 +29,11 @@ public class CommentAdaptorImpl implements CommentAdaptor {
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
         //responseEntity
-        ResponseEntity<List<CommentResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/comments/{taskId}",
+        ResponseEntity<List<ProjectMemberResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/{memberId}",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
-                }, taskId);
+                }, memberId);
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException();
         }
@@ -42,55 +41,57 @@ public class CommentAdaptorImpl implements CommentAdaptor {
     }
 
     @Override
-    public CommentResponse createComment(CommentRequest commentRequest) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-
-        HttpEntity<CommentRequest> requestEntity = new HttpEntity<>(commentRequest, headers);
-
-        ResponseEntity<CommentResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/comments",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
-        if (exchange.getStatusCode() != HttpStatus.CREATED) {
-            throw new RuntimeException();
-        }
-        return exchange.getBody();
-    }
-
-    @Override
-    public CommentResponse updateComment(Long taskId, CommentRequest commentRequest) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-
-        HttpEntity<CommentRequest> requestEntity = new HttpEntity<>(commentRequest, headers);
-
-        ResponseEntity<CommentResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/comments/{taskId}",
-                HttpMethod.PUT,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, taskId);
-        if (exchange.getStatusCode() != HttpStatus.CREATED) {
-            throw new RuntimeException();
-        }
-        return exchange.getBody();
-    }
-
-    @Override
-    public DeleteResponse deleteComment(Long taskId) {
+    public List<ProjectMemberResponse> getMembersByProjectId(Long projectId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
-        ResponseEntity<DeleteResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/comments/{taskId}",
-                HttpMethod.DELETE,
+
+        ResponseEntity<List<ProjectMemberResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/projects/{projectId}",
+                HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
-                }, taskId);
+                }, projectId);
+        if (exchange.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException();
+        }
+        return exchange.getBody();
+    }
+
+    @Override
+    public ProjectMemberResponse createMember(ProjectMemberRegisterRequest request) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<ProjectMemberRegisterRequest> requestEntity = new HttpEntity<>(request, headers);
+
+        ResponseEntity<ProjectMemberResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public ProjectMemberResponse updateMember(String memberId, Long projectId, ProjectMemberModifyRequest request) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<ProjectMemberModifyRequest> requestEntity = new HttpEntity<>(request, headers);
+
+        ResponseEntity<ProjectMemberResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/{memberId}/projects/{projectId}",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, memberId, projectId);
+        if (exchange.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException();
+        }
         return exchange.getBody();
     }
 }

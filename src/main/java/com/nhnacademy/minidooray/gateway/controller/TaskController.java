@@ -2,10 +2,7 @@ package com.nhnacademy.minidooray.gateway.controller;
 
 import com.nhnacademy.minidooray.gateway.domain.TaskRegister;
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
-import com.nhnacademy.minidooray.gateway.model.AccountResponse;
-import com.nhnacademy.minidooray.gateway.model.MilestoneResponse;
-import com.nhnacademy.minidooray.gateway.model.TagResponse;
-import com.nhnacademy.minidooray.gateway.model.TaskResponse;
+import com.nhnacademy.minidooray.gateway.model.*;
 import com.nhnacademy.minidooray.gateway.service.TaskService;
 import com.nhnacademy.minidooray.gateway.util.CookieUtil;
 import java.util.List;
@@ -46,10 +43,11 @@ public class TaskController {
                                   @PathVariable(name = "taskId") Long taskId,
                                   ModelMap modelMap) {
         TaskResponse taskResponse = taskService.getTask(taskId);
-
+        List<CommentResponse> commentResponses = taskService.getComments(taskId);
         modelMap.addAttribute("task", taskResponse);
         modelMap.addAttribute("projectId", projectId);
         modelMap.addAttribute("taskId", taskId);
+        modelMap.addAttribute("comments", commentResponses);
         return "project-task-content-form";
     }
 
@@ -62,6 +60,16 @@ public class TaskController {
         modelMap.addAttribute("tagList", tagResponses);
         modelMap.addAttribute("milestones", milestoneResponses);
         return "project-task-register-form";
+    }
+
+    @GetMapping("/{projectId}/tasks/{taskId}/modify")
+    public String viewModifyTaskForm(@PathVariable(name = "projectId") Long projectId,
+                                     @PathVariable(name = "taskId") Long taskId,
+                                     ModelMap modelMap) {
+        modelMap.addAttribute("projectId", projectId);
+        modelMap.addAttribute("taskId", taskId);
+        return "project-task-modify-form";
+
     }
 
     @PostMapping("/{projectId}/tasks/register")
@@ -77,6 +85,13 @@ public class TaskController {
 
         taskService.createTask(taskRegister, account, projectId);
 
-        return "redirect:/";
+        return "redirect:/client/projects/" + projectId;
+    }
+
+    @PostMapping("/{projectId}/tasks/{taskId}/delete")
+    public String doDeleteTask(@PathVariable(name = "projectId") Long projectId,
+                               @PathVariable(name = "taskId") Long taskId) {
+        taskService.deleteTask(taskId);
+        return "redirect:/client/projects/" + projectId;
     }
 }

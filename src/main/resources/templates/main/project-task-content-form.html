@@ -24,14 +24,31 @@
         <button type="submit" class="modify-button">내용 수정하기</button>
     </form>
 
+    <form method="post" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/delete'}">
+        <button type="submit" class="modify-button">게시글 삭제</button>
+    </form>
 
-    <!--    댓글창-->
-    <div class="review-content">
-        <input type="text" name="inputName" id="inputId" placeholder="입력하세요">
-        <button type="submit" class="review-button">등록</button>
+
+
+
+    <div class="review-list-content">댓글 보이는 곳
+        <ul>
+            <li th:each="comment : ${comments}">
+                <form method="post" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/comment/'+${comment.commentId}}">
+                    <span th:text="${comment.registrantAccount} + ': ' + ${comment.content}"></span>
+                    <button type="submit" class="review-button">삭제</button>
+                </form>
+            </li>
+        </ul>
+
     </div>
-    <div class="review-list-content">댓글 보이는 곳</div>
+    <div class="review-content">
+        <form method="post" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/comment'}">
+            <input type="text" name="content" id="inputId" placeholder="입력하세요">
+            <button type="submit" class="review-button">등록</button>
+        </form>
+    </div>
 
-</div>
+   </div>
 </body>
 </html>
