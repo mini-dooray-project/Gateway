@@ -8,8 +8,10 @@ import com.nhnacademy.minidooray.gateway.model.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class TaskServiceImpl implements TaskService {
     private final TaskAdaptor taskAdaptor;
@@ -83,6 +85,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void createComment(RegisterComment comment, Long taskId, String registrantAccount) {
+      
         CommentRequest commentRequest = new CommentRequest(taskId, registrantAccount, comment.getContent());
         commentAdaptor.createComment(commentRequest);
 

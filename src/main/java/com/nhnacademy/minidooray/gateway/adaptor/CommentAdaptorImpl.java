@@ -15,6 +15,11 @@ public class CommentAdaptorImpl implements CommentAdaptor {
     private RestTemplate restTemplate;
     private TaskAdaptorProperties taskAdaptorProperties;
 
+    public CommentAdaptorImpl(RestTemplate restTemplate, TaskAdaptorProperties taskAdaptorProperties) {
+        this.restTemplate = restTemplate;
+        this.taskAdaptorProperties = taskAdaptorProperties;
+    }
+
     @Override
     public List<CommentResponse> getCommentByTask(Long taskId) {
 

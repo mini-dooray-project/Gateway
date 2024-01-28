@@ -2,10 +2,7 @@ package com.nhnacademy.minidooray.gateway.controller;
 
 import com.nhnacademy.minidooray.gateway.domain.TaskRegister;
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
-import com.nhnacademy.minidooray.gateway.model.AccountResponse;
-import com.nhnacademy.minidooray.gateway.model.MilestoneResponse;
-import com.nhnacademy.minidooray.gateway.model.TagResponse;
-import com.nhnacademy.minidooray.gateway.model.TaskResponse;
+import com.nhnacademy.minidooray.gateway.model.*;
 import com.nhnacademy.minidooray.gateway.service.TaskService;
 import com.nhnacademy.minidooray.gateway.util.CookieUtil;
 import java.util.List;
@@ -45,10 +42,11 @@ public class TaskController {
                                   @PathVariable(name = "taskId") Long taskId,
                                   ModelMap modelMap) {
         TaskResponse taskResponse = taskService.getTask(taskId);
-
+        List<CommentResponse> commentResponses = taskService.getComments(taskId);
         modelMap.addAttribute("task", taskResponse);
         modelMap.addAttribute("projectId", projectId);
         modelMap.addAttribute("taskId", taskId);
+        modelMap.addAttribute("comments", commentResponses);
         return "project-task-content-form";
     }
 
