@@ -15,6 +15,11 @@ public class MilestoneAdaptorImpl implements MilestoneAdaptor {
     private TaskAdaptorProperties taskAdaptorProperties;
     private RestTemplate restTemplate;
 
+    public MilestoneAdaptorImpl(TaskAdaptorProperties taskAdaptorProperties, RestTemplate restTemplate) {
+        this.taskAdaptorProperties = taskAdaptorProperties;
+        this.restTemplate = restTemplate;
+    }
+
     @Override
     public List<MilestoneResponse> getMilestones() {
         HttpHeaders headers = new HttpHeaders();
