@@ -12,6 +12,6 @@ public interface MilestoneService {
 
     void updateMilestone(MilestoneRegister milestoneRegister, Long projectId);
 
-    void deleteMilestone();
+    void deleteMilestone(Long milestoneId);
 
 }

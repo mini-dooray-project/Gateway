@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/project-taskstyles.css">
 
     <style>
-        .test{
+        .test {
             width: 400px;
             height: 574px;
             float: right;
@@ -20,7 +20,7 @@
             height: 574px;
         }
 
-        .content{
+        .content {
             float: left;
             padding-right: 50px;
         }
@@ -30,7 +30,8 @@
             padding: 20px;
             background-color: #f4f4f4;
             border-radius: 5px;
-            width: 60%; !important;
+            width: 60%;
+        !important;
         }
 
     </style>
@@ -47,52 +48,62 @@
     <span>
     <h2>전체 업무</h2>
   </span>
-    <br>
-    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone'}" style="display: inline-block;">
-        <button type="submit" class="milestone-button" formtarget="iframe-test" >진척도 등록</button>
-    </form>
-    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tag'}" style="display: inline-block;">
-        <button type="submit" class="tag-button" formtarget="iframe-test">태그 등록</button>
-    </form>
-    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tasks/register'}" style="display: inline-block;">
-        <button type="submit" class="register-button" formtarget="iframe-test" >게시글 등록</button>
-    </form>
+        <br>
+        <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone'}"
+              style="display: inline-block;">
+            <button type="submit" class="milestone-button" formtarget="iframe-test">진척도 등록</button>
+        </form>
+        <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tag'}" style="display: inline-block;">
+            <button type="submit" class="tag-button" formtarget="iframe-test">태그 등록</button>
+        </form>
+        <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tasks/register'}"
+              style="display: inline-block;">
+            <button type="submit" class="register-button" formtarget="iframe-test">게시글 등록</button>
+        </form>
 
-    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/member'}" style="display: inline-block;">
-        <button type="submit" class="member-button" formtarget="iframe-test">멤버 보기</button>
-    </form>
-    <table>
-        <thead>
-        <tr>
-            <th>업무</th>
-            <th>작성자</th>
-            <th>진척도</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="task : ${tasks}">
-            <td>
-                <a th:href="@{'/client/projects/' + ${projectId}+'/tasks/'+${task.taskId}}">
-                    <span th:text="${task.taskTitle}"></span>
-                </a>
-            </td>
-            <td>
-                <span th:text="${task.registrantAccount}"></span>
-            </td>
-            <td>
-                <span th:text="${task.milestoneName}"></span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
+        <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/member'}" style="display: inline-block;">
+            <button type="submit" class="member-button" formtarget="iframe-test">멤버 보기</button>
+        </form>
+        <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tasks/tag'}"
+              style="display: inline-block;">
+            <button type="submit" class="member-button" formtarget="iframe-test">태그 보기</button>
+        </form>
+        <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone/view'}"
+              style="display: inline-block;">
+            <button type="submit" class="member-button" formtarget="iframe-test">진척도 보기</button>
+        </form>
+        <table>
+            <thead>
+            <tr>
+                <th>업무</th>
+                <th>작성자</th>
+                <th>진척도</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task : ${tasks}">
+                <td>
+                    <a th:href="@{'/client/projects/' + ${projectId}+'/tasks/'+${task.taskId}}">
+                        <span th:text="${task.taskTitle}"></span>
+                    </a>
+                </td>
+                <td>
+                    <span th:text="${task.registrantAccount}"></span>
+                </td>
+                <td>
+                    <span th:text="${task.milestoneName}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
         <form method="get" action="/client/projects">
             <button type="submit" class="back-button">뒤로가기</button>
         </form>
     </div>
-<div class="test" >
-<iframe id="iframe-test" name="iframe-test"></iframe>
-</div>
+    <div class="test">
+        <iframe id="iframe-test" name="iframe-test"></iframe>
+    </div>
 </div>
 </body>
 </html>

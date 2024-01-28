@@ -48,5 +48,21 @@ public class MilestoneController {
         return "redirect:/client/projects/" + projectId;
     }
 
+    @GetMapping("/{projectId}/milestone/view")
+    public String viewMilestoneList(@PathVariable Long projectId, ModelMap modelMap) {
+
+        modelMap.addAttribute("projectId", projectId);
+        modelMap.addAttribute("milestones", milestoneService.getMilestones(projectId));
+        return "project-milestone-view-form";
+    }
+
+    @PostMapping("/{projectId}/milestone/{milestoneId}/delete")
+    public String doDeleteMilestone(@PathVariable(name = "projectId") Long projectId,
+                                    @PathVariable(name = "milestoneId") Long milestoneId,
+                                    ModelMap modelMap) {
+        milestoneService.deleteMilestone(milestoneId);
+        modelMap.addAttribute("projectId", projectId);
+        return "redirect:/client/projects/" + projectId + "/milestone/view";
+    }
 
 }

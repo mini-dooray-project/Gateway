@@ -133,7 +133,7 @@ public class MilestoneAdaptorImpl implements MilestoneAdaptor {
                 HttpMethod.DELETE,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
-                });
+                }, milestoneId);
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException();
         }

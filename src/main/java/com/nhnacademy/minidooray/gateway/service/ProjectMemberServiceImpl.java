@@ -48,8 +48,10 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
         return Objects.nonNull(accountResponse);
 
     }
-  
-      @Override
+
+    @Override
     public Boolean authorityMember(String memberId, Long projectId) {
-        return projectMemberAdaptor.authorityMember(memberId, projectId);
+//        return projectMemberAdaptor.authorityMember(memberId, projectId);
+        return false;
+    }
 }
