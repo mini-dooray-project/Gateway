@@ -60,12 +60,18 @@ public class TaskServiceImpl implements TaskService {
                 projectId, taskRegister.getTitle(), taskRegister.getContent(),
                 account.getId(), taskRegister.getExpireDate());
         TaskResponse taskResponse = taskAdaptor.createTask(taskRequest);
-        for (Long tagId : taskRegister.getTagId()) {
-            TaskTagDto taskTagDto = new TaskTagDto(taskResponse.getTaskId(), tagId);
-            taskTagAdaptor.createTaskTag(taskTagDto);
+        if (Objects.nonNull(taskRegister.getTagId())) {
+            for (Long tagId : taskRegister.getTagId()) {
+                TaskTagDto taskTagDto = new TaskTagDto(taskResponse.getTaskId(), tagId);
+                taskTagAdaptor.createTaskTag(taskTagDto);
+            }
         }
 
+    }
 
+    @Override
+    public void deleteTask(Long taskId) {
+        taskAdaptor.deleteTask(taskId);
     }
 
     @Override

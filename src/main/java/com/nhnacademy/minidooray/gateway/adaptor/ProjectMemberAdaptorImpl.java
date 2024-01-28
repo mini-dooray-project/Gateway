@@ -48,7 +48,6 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
-        //responseEntity
         ResponseEntity<List<ProjectMemberResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/projects/{projectId}",
                 HttpMethod.GET,
                 requestEntity,

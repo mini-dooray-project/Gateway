@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>task-modify-form</title>
 </head>
 <body>
-$END$
+<h1>글 작성</h1>
+<form method="post"th:action="@{'/client/projects/'+${projectId}+'/tasks/register'}">
+    <span>제목</span><input type="text" name="title"></br>
+    <span>내용</span><input type="text" name="content"></br>
+
+    <span>진척도</span>
+    <div th:each="milestone : ${milestones}">
+        <input type="radio" th:value="${milestone.milestoneId}" name="milestoneId" th:id="${'milestone_' + milestone.milestoneId}">
+        <label th:for="${'milestone_' + milestone.milestoneId}" th:text="${milestone.milestoneName}"></label>
+    </div>
+    <span>태그</span>
+    <div th:each="tag : ${tagList}">
+        <input type="checkbox" th:value="${tag.tagId}" name="tagId" th:id="${'tag_' + tag.tagId}">
+        <label th:for="${'tag_' + tag.tagId}" th:text="${tag.tagName}"></label>
+    </div>
+
+    <span>마감 기한</span>
+    <input type="datetime-local" name="expireDate"></br>
+
+    <button type="submit">등록하기</button>
+</form>
+
+<form method="get" th:action="@{'/client/projects/'+${projectId}}">
+    <button type="submit">취소하기</button>
+</form>
 </body>
 </html>

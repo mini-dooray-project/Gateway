@@ -61,6 +61,16 @@ public class TaskController {
         return "project-task-register-form";
     }
 
+    @GetMapping("/{projectId}/tasks/{taskId}/modify")
+    public String viewModifyTaskForm(@PathVariable(name = "projectId") Long projectId,
+                                     @PathVariable(name = "taskId") Long taskId,
+                                     ModelMap modelMap) {
+        modelMap.addAttribute("projectId", projectId);
+        modelMap.addAttribute("taskId", taskId);
+        return "project-task-modify-form";
+
+    }
+
     @PostMapping("/{projectId}/tasks/register")
     public String doRegisterTask(@PathVariable Long projectId,
                                  TaskRegister taskRegister,
@@ -74,6 +84,13 @@ public class TaskController {
 
         taskService.createTask(taskRegister, account, projectId);
 
-        return "redirect:/";
+        return "redirect:/client/projects/" + projectId;
+    }
+
+    @PostMapping("/{projectId}/tasks/{taskId}/delete")
+    public String doDeleteTask(@PathVariable(name = "projectId") Long projectId,
+                               @PathVariable(name = "taskId") Long taskId) {
+        taskService.deleteTask(taskId);
+        return "redirect:/client/projects/" + projectId;
     }
 }

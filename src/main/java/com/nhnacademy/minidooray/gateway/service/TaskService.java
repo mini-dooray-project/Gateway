@@ -12,6 +12,8 @@ public interface TaskService {
 
     void createTask(TaskRegister taskRegister, AccountResponse account, Long projectId);
 
+    void deleteTask(Long taskId);
+
     List<TagResponse> getTagByProjectId(Long projectId);
 
     List<MilestoneResponse> getMilestones(Long projectId);

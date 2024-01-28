@@ -24,6 +24,18 @@
         <button type="submit" class="modify-button">내용 수정하기</button>
     </form>
 
+    <form method="post" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/delete'}">
+        <button type="submit" class="modify-button">게시글 삭제</button>
+    </form>
+
+    <form method="get" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/tag'}">
+        <button type="submit" class="modify-button">태그 목록</button>
+    </form>
+
+    <form method="get" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/milestone'}">
+        <button type="submit" class="modify-button">진척도 목록</button>
+    </form>
+
 
     <div class="review-list-content">댓글 보이는 곳
         <ul>
