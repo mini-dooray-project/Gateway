@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>project-task</title>
     <link rel="stylesheet" type="text/css" href="/project-taskstyles.css">
+
+    <style>
+        .test{
+            width: 400px;
+            height: 574px;
+            float: right;
+        }
+
+        #iframe-test {
+            border: 0;
+            padding: 10px;
+            width: 400px;
+            height: 574px;
+        }
+
+        .content{
+            float: left;
+            padding-right: 50px;
+        }
+
+        .main-content {
+            margin-top: 1.9cm; /* 상단 바와 겹치지 않도록 페이지 컨텐츠의 여백을 조정 */
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            width: 60%; !important;
+        }
+
+    </style>
 </head>
 <body>
 <div class="top-bar">
@@ -14,20 +43,26 @@
     </form>
 </div>
 <div class="main-content">
+    <div class="content">
     <span>
     <h2>전체 업무</h2>
   </span>
     <br>
     <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone'}" style="display: inline-block;">
-        <button type="submit" class="milestone-button">진척도 등록</button>
+        <button type="submit" class="milestone-button" formtarget="iframe-test" >진척도 등록</button>
     </form>
     <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tag'}" style="display: inline-block;">
-        <button type="submit" class="tag-button">태그 등록</button>
+        <button type="submit" class="tag-button" formtarget="iframe-test">태그 등록</button>
     </form>
 
-    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tasks/register'}" style="display: inline-block; margin-right: 10px;">
-        <button type="submit" class="register-button">게시글 등록</button>
+    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tasks/register'}" style="display: inline-block;">
+        <button type="submit" class="register-button" formtarget="iframe-test" >게시글 등록</button>
     </form>
+
+    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/member'}" style="display: inline-block;">
+        <button type="submit" class="member-button" formtarget="iframe-test">멤버 보기</button>
+    </form>
+
 
     <table>
         <thead>
@@ -57,6 +92,11 @@
         <form method="get" action="/client/projects">
             <button type="submit" class="back-button">뒤로가기</button>
         </form>
+    </div>
+<div class="test" >
+<iframe id="iframe-test" name="iframe-test"></iframe>
+</div>
+
 </div>
 </body>
 </html>

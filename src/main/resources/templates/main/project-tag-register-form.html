@@ -5,13 +5,35 @@
     <title>tag-register-form</title>
 </head>
 <body>
-<form method="post" th:action="@{'/client/projects/'+${projectId}+'/tag'}">
+<form  id="taskForm" method="post" th:action="@{'/client/projects/'+${projectId}+'/tag'}">
     <span>태그명</span>
     <input type="text" name="tagName"></br>
-    <button type="submit">등록하기</button>
+    <button type="button" onclick="submitForm()">등록하기</button>
 </form>
-<form method="get" th:action="@{'/client/projects/'+${projectId}}">
-    <button type="submit">뒤로가기</button>
-</form>
+<!--<form method="get" th:action="@{'/client/projects/'+${projectId}}">-->
+<!--    <button type="submit">뒤로가기</button>-->
+<!--</form>-->
+<script>
+    function submitForm() {
+        var form = document.getElementById("taskForm");
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 서버로부터의 응답을 처리할 코드
+                    console.log("폼이 성공적으로 제출되었습니다.");
+                } else {
+                    // 서버로부터의 에러 응답을 처리할 코드
+                    console.error("폼 제출 중 에러가 발생했습니다.");
+                }
+            }
+        };
+        xhr.send(formData);
+        window.parent.location.reload();
+    }
+</script>
 </body>
 </html>
