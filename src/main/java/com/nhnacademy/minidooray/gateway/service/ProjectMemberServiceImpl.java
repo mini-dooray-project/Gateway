@@ -46,5 +46,10 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     public boolean existMember(String accountId) {
         AccountResponse accountResponse = accountAdaptor.getAccount(accountId);
         return Objects.nonNull(accountResponse);
+
     }
+  
+      @Override
+    public Boolean authorityMember(String memberId, Long projectId) {
+        return projectMemberAdaptor.authorityMember(memberId, projectId);
 }

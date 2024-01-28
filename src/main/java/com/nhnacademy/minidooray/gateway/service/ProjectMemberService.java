@@ -10,8 +10,10 @@ public interface ProjectMemberService {
     List<ProjectMemberResponse> getProjects(String accountId);
 
     void registerProjectMember(RegisterProjectMember projectMemberRegisterRequest, Long projectId);
+    Boolean authorityMember(String memberId, Long projectId);
 
 
     boolean existMember(String accountId);
+
 
 }
