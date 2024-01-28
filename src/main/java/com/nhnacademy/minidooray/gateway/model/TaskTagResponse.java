@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentRequest {
+public class TaskTagResponse {
     private Long taskId;
-    private String registrantAccount;
-    private String content;
-
+    private Long tagId;
+    String taskName;
 }

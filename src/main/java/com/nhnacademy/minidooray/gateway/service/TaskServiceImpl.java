@@ -1,10 +1,8 @@
 package com.nhnacademy.minidooray.gateway.service;
 
-import com.nhnacademy.minidooray.gateway.adaptor.MilestoneAdaptor;
-import com.nhnacademy.minidooray.gateway.adaptor.TagAdaptor;
-import com.nhnacademy.minidooray.gateway.adaptor.TaskAdaptor;
-import com.nhnacademy.minidooray.gateway.domain.Comment;
+import com.nhnacademy.minidooray.gateway.adaptor.*;
 import com.nhnacademy.minidooray.gateway.domain.TaskRegister;
+import com.nhnacademy.minidooray.gateway.domain.TaskTagDto;
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
 import com.nhnacademy.minidooray.gateway.model.*;
 import java.util.ArrayList;
@@ -17,11 +15,15 @@ public class TaskServiceImpl implements TaskService {
     private final TaskAdaptor taskAdaptor;
     private final MilestoneAdaptor milestoneAdaptor;
     private final TagAdaptor tagAdaptor;
+    private final TaskTagAdaptor taskTagAdaptor;
+    private final CommentAdaptor commentAdaptor;
 
-    public TaskServiceImpl(TaskAdaptor taskAdaptor, MilestoneAdaptor milestoneAdaptor, TagAdaptor tagAdaptor) {
+    public TaskServiceImpl(TaskAdaptor taskAdaptor, MilestoneAdaptor milestoneAdaptor, TagAdaptor tagAdaptor, TaskTagAdaptor taskTagAdaptor, CommentAdaptor commentAdaptor) {
         this.taskAdaptor = taskAdaptor;
         this.milestoneAdaptor = milestoneAdaptor;
         this.tagAdaptor = tagAdaptor;
+        this.taskTagAdaptor = taskTagAdaptor;
+        this.commentAdaptor = commentAdaptor;
     }
 
     @Override
@@ -45,18 +47,23 @@ public class TaskServiceImpl implements TaskService {
         return taskResponse;
     }
 
+    // task
+    // task tag
     @Override
-    public void createTask(TaskRegister taskRegister) {
+    public void createTask(TaskRegister taskRegister, AccountResponse account, Long projectId) {
         if (Objects.isNull(taskRegister)) {
             throw new NullPointerException();
         }
-        TaskRequest taskRequest = new TaskRequest();
-        taskAdaptor.createTask(taskRequest);
-    }
+        TaskRequest taskRequest = new TaskRequest(taskRegister.getMilestone(),
+                projectId, taskRegister.getTitle(), taskRegister.getContent(),
+                account.getId(), taskRegister.getExpireDate());
+        TaskResponse taskResponse = taskAdaptor.createTask(taskRequest);
+        for (Long tagId : taskRegister.getTagId()) {
+            TaskTagDto taskTagDto = new TaskTagDto(taskResponse.getTaskId(), tagId);
+            taskTagAdaptor.createTaskTag(taskTagDto);
+        }
 
-    @Override
-    public List<Comment> getComments(Long taskID) {
-        return null;
+
     }
 
     @Override
@@ -67,5 +74,26 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<MilestoneResponse> getMilestones(Long projectId) {
         return milestoneAdaptor.getMilestoneByProjectId(projectId);
+    }
+
+    @Override
+    public List<CommentResponse> getComments(Long taskId) {
+        return commentAdaptor.getCommentByTask(taskId);
+    }
+
+    @Override
+    public void createComment(RegisterComment comment, Long taskId, String registrantAccount) {
+        CommentRequest commentRequest = new CommentRequest(taskId, registrantAccount, comment.getContent());
+        commentAdaptor.createComment(commentRequest);
+
+    }
+
+    @Override
+    public void updateComment() {
+    }
+
+    @Override
+    public void deleteComment() {
+
     }
 }

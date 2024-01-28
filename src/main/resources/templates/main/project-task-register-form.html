@@ -12,14 +12,18 @@
 
     <span>진척도</span>
     <div th:each="milestone : ${milestones}">
-        <input type="radio" th:value="${milestone.milestoneName}" name="milestone" th:id="${'milestone_' + milestone.milestoneId}">
+        <input type="radio" th:value="${milestone.milestoneId}" name="milestoneId" th:id="${'milestone_' + milestone.milestoneId}">
         <label th:for="${'milestone_' + milestone.milestoneId}" th:text="${milestone.milestoneName}"></label>
     </div>
     <span>태그</span>
     <div th:each="tag : ${tagList}">
-        <input type="checkbox" th:value="${tag}" name="tags" th:id="${'tag_' + tag.tagId}">
+        <input type="checkbox" th:value="${tag.tagId}" name="tagId" th:id="${'tag_' + tag.tagId}">
         <label th:for="${'tag_' + tag.tagId}" th:text="${tag.tagName}"></label>
     </div>
+
+    <span>마감 기한</span>
+    <input type="datetime-local" name="expireDate"></br>
+
     <button type="submit">등록하기</button>
 </form>
 

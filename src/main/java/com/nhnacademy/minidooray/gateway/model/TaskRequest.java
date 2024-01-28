@@ -1,11 +1,13 @@
 package com.nhnacademy.minidooray.gateway.model;
 
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class TaskRequest {
     Long milestoneId;
     Long projectId;
