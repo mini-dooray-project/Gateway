@@ -106,7 +106,7 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
     }
 
     @Override
-    public Boolean authMember(String memberId, Long projectId) {
+    public Boolean authorityMember(String memberId, Long projectId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));

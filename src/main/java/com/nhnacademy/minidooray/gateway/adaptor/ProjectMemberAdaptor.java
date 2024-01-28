@@ -14,5 +14,5 @@ public interface ProjectMemberAdaptor {
 
     ProjectMemberResponse updateMember(String memberId, Long projectId, ProjectMemberModifyRequest request);
 
-    Boolean authMember(String memberId, Long projectId);
+    Boolean authorityMember(String memberId, Long projectId);
 }

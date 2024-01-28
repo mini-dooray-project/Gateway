@@ -13,6 +13,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         LoginCheckInterceptor loginCheckInterceptor = new LoginCheckInterceptor();
         registry.addInterceptor(loginCheckInterceptor).addPathPatterns("/client/projects/**");
-//        registry.addInterceptor(new LocaleChangeInterceptor()).addPathPatterns("/client/projects/**");
+        registry.addInterceptor(new LocaleChangeInterceptor())
+                .addPathPatterns("/client/projects/**")
+                .excludePathPatterns("/client/projects");
     }
 }

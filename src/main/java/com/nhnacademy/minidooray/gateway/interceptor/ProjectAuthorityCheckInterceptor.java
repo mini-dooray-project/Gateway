@@ -34,6 +34,6 @@ public class ProjectAuthorityCheckInterceptor implements HandlerInterceptor {
         AccountResponse account = (AccountResponse) session.getAttribute(cookie.getValue());
 
         System.out.println("blocked!!!");
-        return projectMemberService.authMember(account.getId(), Long.parseLong(projectId));
+        return projectMemberService.authorityMember(account.getId(), Long.parseLong(projectId));
     }
 }

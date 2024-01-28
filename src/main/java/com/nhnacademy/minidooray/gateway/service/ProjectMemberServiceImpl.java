@@ -13,7 +13,7 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     }
 
     @Override
-    public Boolean authMember(String memberId, Long projectId) {
-        return projectMemberAdaptor.authMember(memberId, projectId);
+    public Boolean authorityMember(String memberId, Long projectId) {
+        return projectMemberAdaptor.authorityMember(memberId, projectId);
     }
 }
