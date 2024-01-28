@@ -6,7 +6,12 @@ import com.nhnacademy.minidooray.gateway.model.ProjectMemberRegisterRequest;
 import com.nhnacademy.minidooray.gateway.model.ProjectMemberResponse;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,11 +34,12 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
         //responseEntity
-        ResponseEntity<List<ProjectMemberResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/{memberId}",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, memberId);
+        ResponseEntity<List<ProjectMemberResponse>> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/{memberId}",
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, memberId);
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException();
         }
@@ -49,11 +55,12 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
         //responseEntity
-        ResponseEntity<List<ProjectMemberResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/project/{projectId}",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId);
+        ResponseEntity<List<ProjectMemberResponse>> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/project/{projectId}",
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId);
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException();
         }
@@ -68,12 +75,13 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
 
         HttpEntity<ProjectMemberRegisterRequest> requestEntity = new HttpEntity<>(request, headers);
 
-        ResponseEntity<ProjectMemberResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
-       
+        ResponseEntity<ProjectMemberResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members",
+                        HttpMethod.POST,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        });
+
         return exchange.getBody();
     }
 
@@ -85,7 +93,8 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
 
         HttpEntity<ProjectMemberModifyRequest> requestEntity = new HttpEntity<>(request, headers);
 
-        ResponseEntity<ProjectMemberResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/{memberId}/projects/{projectId}",
+        ResponseEntity<ProjectMemberResponse> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/api/members/{memberId}/projects/{projectId}",
                 HttpMethod.POST,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
@@ -93,6 +102,23 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException();
         }
+        return exchange.getBody();
+    }
+
+    @Override
+    public Boolean authMember(String memberId, Long projectId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+
+        ResponseEntity<Boolean> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/api/members/{memberId}/projects/{projectId}",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<Boolean>() {
+                }, memberId, projectId);
         return exchange.getBody();
     }
 }

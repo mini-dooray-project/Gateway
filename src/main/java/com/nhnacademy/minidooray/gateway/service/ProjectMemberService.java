@@ -1,2 +1,5 @@
-package com.nhnacademy.minidooray.gateway.service;public interface ProjectMemberService {
+package com.nhnacademy.minidooray.gateway.service;
+
+public interface ProjectMemberService {
+    Boolean authMember(String memberId, Long projectId);
 }
