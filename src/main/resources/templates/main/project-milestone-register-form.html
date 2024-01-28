@@ -5,16 +5,39 @@
     <title>project-milestone-form</title>
 </head>
 <body>
-<form method="post" th:action="@{'/client/projects/'+${projectId}+'/milestone'}">
+<form id="taskForm" method="post" th:action="@{'/client/projects/'+${projectId}+'/milestone'}">
     <span>진척도 이름</span>
     <input type="text" name="milestoneName"></br>
     <span>시작 날짜</span>
-    <input type="date" name="startDate"></br>
+    <input type="datetime-local" name="startDate"></br>
     <span>마무리 날짜</span>
-    <input type="date" name="milestoneExpireDate"></br>
+    <input type="datetime-local" name="milestoneExpireDate"></br>
 
-    <button type="submit">등록하기</button>
+    <button type="button" onclick="submitForm()">등록하기</button>
 </form>
 <a th:href="@{'/client/projects/' + ${projectId}}"></a>
+
+<script>
+    function submitForm() {
+        var form = document.getElementById("taskForm");
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 서버로부터의 응답을 처리할 코드
+                    console.log("폼이 성공적으로 제출되었습니다.");
+                } else {
+                    // 서버로부터의 에러 응답을 처리할 코드
+                    console.error("폼 제출 중 에러가 발생했습니다.");
+                }
+            }
+        };
+        xhr.send(formData);
+        window.parent.location.reload();
+    }
+</script>
 </body>
 </html>

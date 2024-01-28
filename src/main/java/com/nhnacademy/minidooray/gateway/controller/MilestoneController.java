@@ -7,6 +7,8 @@ import com.nhnacademy.minidooray.gateway.util.CookieUtil;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,8 @@ public class MilestoneController {
     public MilestoneController(MilestoneService milestoneService) {
         this.milestoneService = milestoneService;
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(MilestoneController.class);
 
     @GetMapping("/{projectId}/milestone")
     public String viewMilestone(@PathVariable Long projectId,
@@ -39,6 +43,7 @@ public class MilestoneController {
         Cookie cookie = CookieUtil.getCookie(request.getCookies(), "login");
         AccountResponse accountResponse = (AccountResponse) session.getAttribute(cookie.getValue());
 
+        logger.info(milestoneRegister.getMilestoneName());
         milestoneService.createMilestone(milestoneRegister, projectId);
         return "redirect:/client/projects/" + projectId;
     }

@@ -1,10 +1,12 @@
 package com.nhnacademy.minidooray.gateway.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProjectResponse {
     private Long projectId;
     private Long statusId;

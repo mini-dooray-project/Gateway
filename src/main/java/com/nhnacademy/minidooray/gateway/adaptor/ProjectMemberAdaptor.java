@@ -6,9 +6,9 @@ import com.nhnacademy.minidooray.gateway.model.ProjectMemberResponse;
 import java.util.List;
 
 public interface ProjectMemberAdaptor {
-    List<ProjectMemberResponse> getProjects(String memberId);
+    List<ProjectMemberResponse> getMembersByMemberId(String memberId);
 
-    List<ProjectMemberResponse> getMembers(Long projectId);
+    List<ProjectMemberResponse> getMembersByProjectId(Long projectId);
 
     ProjectMemberResponse createMember(ProjectMemberRegisterRequest projectMemberRegisterRequest);
 

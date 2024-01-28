@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>project-register-form</title>
+</head>
+<body>
+  <form method="post" th:action="@{'/client/projects/'+${projectId+'/member/register'}}">
+    <span>아이디:</span>
+    <input type ="text" name="accountId"></br>
+    <button type="submit">등록하기</button>
+  </form>
+</body>
+</html>

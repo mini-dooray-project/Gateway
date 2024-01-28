@@ -26,7 +26,7 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
     }
 
     @Override
-    public List<ProjectMemberResponse> getProjects(String memberId) {
+    public List<ProjectMemberResponse> getMembersByMemberId(String memberId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -47,20 +47,19 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
     }
 
     @Override
-    public List<ProjectMemberResponse> getMembers(Long projectId) {
+    public List<ProjectMemberResponse> getMembersByProjectId(Long projectId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
-        //responseEntity
-        ResponseEntity<List<ProjectMemberResponse>> exchange =
-                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/project/{projectId}",
-                        HttpMethod.GET,
-                        requestEntity,
-                        new ParameterizedTypeReference<>() {
-                        }, projectId);
+        ResponseEntity<List<ProjectMemberResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/projects/{projectId}",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
+
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException();
         }
@@ -75,12 +74,12 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
 
         HttpEntity<ProjectMemberRegisterRequest> requestEntity = new HttpEntity<>(request, headers);
 
-        ResponseEntity<ProjectMemberResponse> exchange =
-                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members",
-                        HttpMethod.POST,
-                        requestEntity,
-                        new ParameterizedTypeReference<>() {
-                        });
+        ResponseEntity<ProjectMemberResponse> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
 
         return exchange.getBody();
     }
