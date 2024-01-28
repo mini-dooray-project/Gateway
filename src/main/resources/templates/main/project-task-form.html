@@ -34,6 +34,14 @@
           style="display: inline-block; margin-right: 10px;">
         <button type="submit" class="register-button">프로젝트 멤버 보기</button>
     </form>
+
+    <form method="get" th:action="@{'/client/projects/'+${projectId}+'/tasks/tag'}">
+        <button type="submit" class="tag-button">태그 목록</button>
+    </form>
+
+    <form method="get" th:action="@{'/client/projects/'+${projectId}+'/tasks/milestone'}">
+        <button type="submit" class="milestone-button">진척도 목록</button>
+    </form>
     <table>
         <thead>
         <tr>

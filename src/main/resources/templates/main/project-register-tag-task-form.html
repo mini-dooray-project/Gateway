@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>프로젝트에 등록된 태그</title>
 </head>
 <body>
+<div th:each="tag : ${tagList}">
+    <span th:text="${tag.tagName}"></span>
 
+</div>
 </body>
 </html>

@@ -4,10 +4,12 @@ import com.nhnacademy.minidooray.gateway.model.TagRequest;
 import com.nhnacademy.minidooray.gateway.model.TagResponse;
 import com.nhnacademy.minidooray.gateway.service.TagService;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller
 @RequestMapping("/client/projects")
 public class TagController {
@@ -32,12 +34,11 @@ public class TagController {
         return path;
     }
 
-    @GetMapping("/{projectId}/tasks/{taskId}/tag")
+    @GetMapping("/{projectId}/tasks/tag")
     public String viewProjectRegisterTagForm(@PathVariable(name = "projectId") Long projectId,
-                                             @PathVariable(name = "taskId") Long taskId,
                                              ModelMap modelMap) {
-        List<TagResponse> list = tagService.getTagsByProjectId(projectId);
-        modelMap.addAttribute("tagList", list);
+        List<TagResponse> tagResponses = tagService.getTagsByProjectId(projectId);
+        modelMap.addAttribute("tagList", tagResponses);
         return "project-register-tag-task-form";
     }
 
