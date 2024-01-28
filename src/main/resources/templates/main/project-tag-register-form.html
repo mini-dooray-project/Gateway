@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>tag-register-form</title>
 </head>
 <body>
-$END$
+<form method="post" th:action="@{'/client/projects/'+${projectId}+'/tag'}">
+    <span>태그명</span>
+    <input type="text" name="tagName"></br>
+    <button type="submit">등록하기</button>
+</form>
+<form method="get" th:action="@{'/client/projects'+${projectId}}">
+    <button type="submit">뒤로가기</button>
+</form>
 </body>
 </html>

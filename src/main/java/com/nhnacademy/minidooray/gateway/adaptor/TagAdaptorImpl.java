@@ -59,6 +59,25 @@ public class TagAdaptorImpl implements TagAdaptor {
     }
 
     @Override
+    public List<TagResponse> getTagByProjectId(Long projectId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+
+        ResponseEntity<List<TagResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/tags/project/{projectId}",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
+        if (exchange.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException();
+        }
+        return exchange.getBody();
+    }
+
+    @Override
     public TagResponse createTag(TagRequest request) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

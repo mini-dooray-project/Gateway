@@ -6,7 +6,10 @@
 </head>
 <body>
 <p>task content</p>
-<span></span>
+<span th:text="${task.title}"></span></br>
+<span th:text="${task.registrantAccount}"></span></br>
+<span th:text="${task.content}"></span></br>
+<span th:text="${task.createdDate}"></span></br>
 
 
 <form method="get" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/modify'}">

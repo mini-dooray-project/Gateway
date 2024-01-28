@@ -10,6 +10,8 @@ public interface TagAdaptor {
 
     TagResponse getTag(Long tagId);
 
+    List<TagResponse> getTagByProjectId(Long projectId);
+
     TagResponse createTag(TagRequest request);
 
     TagResponse updateTag(Long tagId, TagRequest request);
