@@ -1,12 +1,13 @@
 package com.nhnacademy.minidooray.gateway.controller;
 
+import com.nhnacademy.minidooray.gateway.model.TagRequest;
 import com.nhnacademy.minidooray.gateway.service.TagService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("clienr/projects")
+@RequestMapping("/client/projects")
 public class TagController {
     private TagService tagService;
 
@@ -24,8 +25,9 @@ public class TagController {
 
     @PostMapping("/{projectId}/tag")
     public String doRegisterTag(@PathVariable Long projectId, @RequestParam String tagName) {
-        
-        return "redirect:/";
+        tagService.createTag(new TagRequest(projectId, tagName));
+        String path = "redirect:/client/projects/" + projectId;
+        return path;
     }
 
 }
