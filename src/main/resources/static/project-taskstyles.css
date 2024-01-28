@@ -58,7 +58,7 @@ body {
     padding: 20px;
     background-color: #f4f4f4;
     border-radius: 5px;
-    width: 30%;
+    /*width: 30%;*/
 }
 
 .back-button[type="submit"] {
@@ -182,4 +182,19 @@ th, td {
 /* 여백 설정 */
 tbody tr {
     margin-bottom: 10px; /* 각 행의 아래 여백 설정 */
+}
+
+.member-button[type="submit"] {
+    padding: 6px 10px;
+    background-color: #346fc0; /* 배경색 */
+    color: white; /* 글자색 */
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive; /* 폰트 */
+    font-size: 13px; /* 폰트 크기 */
+}
+
+.member-button[type="submit"]:hover {
+    background-color: #22497f; /* 마우스 호버시 배경색 */
 }
