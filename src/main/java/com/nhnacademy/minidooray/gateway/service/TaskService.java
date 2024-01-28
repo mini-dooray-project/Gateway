@@ -1,6 +1,5 @@
 package com.nhnacademy.minidooray.gateway.service;
 
-import com.nhnacademy.minidooray.gateway.domain.Comment;
 import com.nhnacademy.minidooray.gateway.domain.TaskRegister;
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
 import com.nhnacademy.minidooray.gateway.model.*;
@@ -13,16 +12,16 @@ public interface TaskService {
 
     void createTask(TaskRegister taskRegister, AccountResponse account, Long projectId);
 
-    List<TagResponse> getTagByProjectId(Long projectID);
+    List<TagResponse> getTagByProjectId(Long projectId);
 
     List<MilestoneResponse> getMilestones(Long projectId);
 
 
-    List<Comment> getComments(Long taskID);
-    
-    CommentResponse createComment();
+    List<CommentResponse> getComments(Long taskId);
 
-    CommentResponse updateComment();
+    void createComment(RegisterComment comment, Long taskId, String registrantAccount);
+
+    void updateComment();
 
     void deleteComment();
 

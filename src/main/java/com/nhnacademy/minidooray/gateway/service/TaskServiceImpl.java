@@ -1,10 +1,6 @@
 package com.nhnacademy.minidooray.gateway.service;
 
-import com.nhnacademy.minidooray.gateway.adaptor.MilestoneAdaptor;
-import com.nhnacademy.minidooray.gateway.adaptor.TagAdaptor;
-import com.nhnacademy.minidooray.gateway.adaptor.TaskAdaptor;
-import com.nhnacademy.minidooray.gateway.adaptor.TaskTagAdaptor;
-import com.nhnacademy.minidooray.gateway.domain.Comment;
+import com.nhnacademy.minidooray.gateway.adaptor.*;
 import com.nhnacademy.minidooray.gateway.domain.TaskRegister;
 import com.nhnacademy.minidooray.gateway.domain.TaskTagDto;
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
@@ -20,12 +16,14 @@ public class TaskServiceImpl implements TaskService {
     private final MilestoneAdaptor milestoneAdaptor;
     private final TagAdaptor tagAdaptor;
     private final TaskTagAdaptor taskTagAdaptor;
+    private final CommentAdaptor commentAdaptor;
 
-    public TaskServiceImpl(TaskAdaptor taskAdaptor, MilestoneAdaptor milestoneAdaptor, TagAdaptor tagAdaptor, TaskTagAdaptor taskTagAdaptor) {
+    public TaskServiceImpl(TaskAdaptor taskAdaptor, MilestoneAdaptor milestoneAdaptor, TagAdaptor tagAdaptor, TaskTagAdaptor taskTagAdaptor, CommentAdaptor commentAdaptor) {
         this.taskAdaptor = taskAdaptor;
         this.milestoneAdaptor = milestoneAdaptor;
         this.tagAdaptor = tagAdaptor;
         this.taskTagAdaptor = taskTagAdaptor;
+        this.commentAdaptor = commentAdaptor;
     }
 
     @Override
@@ -79,18 +77,19 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Comment> getComments(Long taskID) {
-        return null;
+    public List<CommentResponse> getComments(Long taskId) {
+        return commentAdaptor.getCommentByTask(taskId);
     }
 
     @Override
-    public CommentResponse createComment() {
-        return null;
+    public void createComment(RegisterComment comment, Long taskId, String registrantAccount) {
+        CommentRequest commentRequest = new CommentRequest(taskId, registrantAccount, comment.getContent());
+        commentAdaptor.createComment(commentRequest);
+
     }
 
     @Override
-    public CommentResponse updateComment() {
-        return null;
+    public void updateComment() {
     }
 
     @Override
