@@ -1,51 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>projec-task</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project-list</title>
+    <link rel="stylesheet" type="text/css" href="/project-taskstyles.css">
 </head>
 <body>
-<span>
-    <p>전체 업무</p>
+<div class="top-bar">
+    <h2><span onclick="location.href='/'" class="home-link">Mini-Dooray!</span> | <span>프로젝트</span></h2>
+    <form th:method="post" action="/client/logout">
+        <button type="submit" class="logout-button">로그아웃</button>
+    </form>
+</div>
+<div class="main-content">
+    <span>
+    <h2>전체 업무</h2>
   </span>
-<table>
-    <thead>
-    <tr>업무</tr>
-    <tr>작성자</tr>
-    <tr>진척도</tr>
-    </thead>
-    <tbody>
-    <tr th:each="task : ${tasks}">
-
-        <td>
-            <a th:href="@{'/client/projects/' + ${projectId}+'/tasks/'+${task.taskId}}">
-                <span th:text="${task.taskTitle}"></span>
-            </a>
-        </td>
-
-        <td>
-            <span th:text="${task.registrantAccount}"></span>
-        </td>
-        <td>
-            <span th:text="${task.milestoneName}"></span>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<form method="get" action="/client/projects">
-    <button type="submit">뒤로가기</button>
-</form>
-<form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone'}">
-    <button type="submit">진척도 등록</button>
-</form>
-
-<form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tag'}">
-    <button type="submit">태그 등록</button>
-</form>
-
-
-<form method="get" th:action="@{'/client/projects/'+${projectId}+'/tasks/register'}">
-    <button type="submit">업무 등록</button>
-</form>
+    <table>
+        <thead>
+        <tr>
+            <th>업무</th>
+            <th>작성자</th>
+            <th>진척도</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <td>
+                <a th:href="@{'/client/projects/' + ${projectId}+'/tasks/'+${task.taskId}}">
+                    <span th:text="${task.taskTitle}"></span>
+                </a>
+            </td>
+            <td>
+                <span th:text="${task.registrantAccount}"></span>
+            </td>
+            <td>
+                <span th:text="${task.milestoneName}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <form method="get" action="/client/projects">
+        <button type="submit" class="create-button">뒤로가기</button>
+    </form>
+    <br>
+    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone'}">
+        <button type="submit" class="create-button">진척도 등록</button>
+    </form>
+</div>
 </body>
 </html>
