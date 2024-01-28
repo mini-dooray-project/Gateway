@@ -8,28 +8,25 @@
     <link rel="stylesheet" type="text/css" href="mainstyles.css">
 </head>
 <body>
-<div class="main-container">
-    <div class="top-bar">
-        <h2><span onclick="location.href='/'" class="home-link">Mini-Dooray!</span> | <span>홈</span></h2>
-        <button th:if="${loginId} == null" onclick="location.href='/client/accounts/register'" class="register-button">
-            회원 가입
-        </button>
-        <button th:if="${loginId} == null" onclick="location.href='/client/login'" class="login-button">로그인</button>
-        <form th:unless="${loginId} == null" method="post" action="/client/logout">
-            <button type="submit" class="logout-button">로그아웃</button>
-        </form>
-        <form th:unless="${loginId} == null" method="get" action="/client/projects">
-            <button type="submit" class="projects-button">프로젝트 목록보기</button>
-        </form>
-        <form th:unless="${loginId} == null" method="get" action="/client/projects/register">
-            <button type="submit" class="create-button">프로젝트 생성</button>
-        </form>
-    </div>
 
-    <div class="main-content">
-        <h1>Main Page Content</h1>
-        <p>이곳에 메인 페이지 컨텐츠를 추가하세요.</p>
-    </div>
+<div class="top-bar">
+    <h2> <span onclick="location.href='/'" class="home-link">Mini-Dooray!</span> | <span>홈</span></h2>
+    <button th:if="${loginId} == null" onclick="location.href='/client/accounts/register'" class="register-button">회원 가입</button>
+    <button th:if="${loginId} == null" onclick="location.href='/client/login'" class="login-button">로그인</button>
+    <form th:unless="${loginId} == null" method="post" action="/client/logout">
+        <button type="submit" class="logout-button">로그아웃</button>
+    </form>
+    <form th:unless="${loginId} == null" method="get" action="/client/projects">
+        <button type="submit" class="projects-button">프로젝트 목록보기</button>
+    </form>
+    <form th:unless="${loginId} == null" method="get" action="/client/projects/register">
+        <button type="submit" class="create-button">프로젝트 생성</button>
+    </form>
+</div>
+
+<div class="main-content">
+    <h1>Main Page Content</h1>
+    <p>이곳에 메인 페이지 컨텐츠를 추가하세요.</p>
 </div>
 </body>
 </html>

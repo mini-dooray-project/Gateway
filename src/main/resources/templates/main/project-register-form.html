@@ -7,25 +7,25 @@
     <link rel="stylesheet" type="text/css" href="/project-registerstyles.css">
 </head>
 <body>
-<div class="main-container">
-    <div class="top-bar">
-        <h2><span onclick="location.href='/'" class="home-link">Mini-Dooray!</span> | <span>프로젝트</span></h2>
-        <form th:method="post" action="/client/logout">
-            <button type="submit" class="logout-button">로그아웃</button>
-        </form>
-    </div>
+<div class="top-bar">
+    <h2><span onclick="location.href='/'" class="home-link">Mini-Dooray!</span> | <span>프로젝트</span></h2>
+    <form th:method="post" action="/client/logout">
+        <button type="submit" class="logout-button">로그아웃</button>
+    </form>
+</div>
 
-<div>
-    <h2>프로젝트 생성</h2>
+<div class="main-content">
+    <h2> <img src="/project.png" alt="아이콘" style="width: 30px; height: 25px; margin-right: 10px; margin-bottom: 3px; vertical-align: middle;">프로젝트 생성</h2>
     <br>
     <form method="post" action="/client/projects/register">
-        <span style="font-weight: bold;">프로젝트명:</span>
+        <span style="font-weight: bold;">프로젝트명</span>
+        <p></p>
         <input type="text" name="projectName" placeholder="프로젝트명을 입력하세요" required/>
-        <button type="submit" class="create-button">등록하기</button>
+        <br><br>
+        <button type="submit" class="create-button">등록</button>
         <br>
     </form>
     <a href="main.html"/>
-</div>
 </div>
 </body>
 </html>

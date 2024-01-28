@@ -1,3 +1,4 @@
+/* mainstyles.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -51,29 +52,89 @@ body {
     text-decoration: none; /* 밑줄 제거 */
 }
 
-.container {
-    text-align: center;
-    margin-top: 50px;
+/* 예시로 내용 추가 */
+.main-content {
+    margin-top: 1.9cm; /* 상단 바와 겹치지 않도록 페이지 컨텐츠의 여백을 조정 */
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    width: 30%;
 }
 
-.task-list table {
+/* project-taskstyles.css */
+table {
     border-collapse: collapse;
     width: 100%;
-    margin-top: 20px;
+    margin: 1rem auto;
+    background-color: white;
+    overflow: hidden;
 }
 
-.task-list table th,
-.task-list table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
+thead {
+    background-color: #f4f4f4;
+    color: white;
+    text-align: center;
 }
 
-.task-list table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+/* 테이블 행 */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
-.task-list table tr:hover {
-    background-color: #f9f9f9;
+th {
+    padding: 8px;
+    border-top: 3px solid #f4f4f4;
+    border-bottom: 2px solid #000000;
+    color: #000;
+    text-align: center;
+}
+
+/* 테이블 올렸을 때 */
+tbody tr:hover {
+    background-color: #d3d3d3;
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+/* 테이블 비율 */
+th:nth-child(1),
+td:nth-child(1) {
+    width: 15%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 55%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: 30%;
+}
+
+th, td {
+    border-left: none;
+    border-right: none;
+}
+
+.create-button[type="submit"] {
+    padding: 7px 20px;
+    background-color: #050101; /* 배경색 */
+    color: white; /* 글자색 */
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive; /* 폰트 */
+    font-size: 15px; /* 폰트 크기 */
+}
+
+.create-button[type="submit"]:hover {
+    background-color: #0056b3; /* 마우스 호버시 배경색 */
+}
+
+/* 여백 설정 */
+tbody tr {
+    margin-bottom: 10px; /* 각 행의 아래 여백 설정 */
 }

@@ -4,45 +4,34 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
 }
 
 /* 상단 파란색 바 스타일 */
 .top-bar {
-    background-color: #396ac8;
-    height: 50px;
+    background-color: #396ac8; /* 파란색 */
+    height: 1.3cm; /* 높이 1.2cm */
     width: 100%;
-    position: fixed;
+    position: fixed; /* 화면 상단에 고정 */
     top: 0;
     left: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 100; /* 다른 요소 위에 올라오도록 설정 */
-}
-
-h1 {
-    /* 폰트 설정 */
-    font-family: 'Roboto', sans-serif;
-    /* 글꼴 크기 설정 */
-    font-size: 24px;
-    /* 글꼴 색상 설정 */
-    color: #333;
-    /* 폰트 굵기 설정 */
-    font-weight: bold;
-    /* 텍스트 정렬 설정 */
-    text-align: center;
-    /* 위아래 여백 설정 */
-    margin: 20px 0;
+    padding-left: 20px;
+    padding-right: 20px; /* 오른쪽 여백 추가 */
 }
 
 /* Mini-Dooray 텍스트 스타일 */
 .top-bar h2 {
     margin: 0;
-    font-size: 16px;
-    color: white;
-    font-family: 'Comic Sans MS', cursive;
-    cursor: pointer;
+    font-size: 16px; /* 폰트 사이즈 */
+    color: white; /* 흰색 */
+    font-family: 'Comic Sans MS', cursive; /* 귀여운 폰트 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능하도록 설정 */
+    margin-right: auto; /* 자동으로 오른쪽으로 이동 */
 }
 
 .logout-button {
@@ -59,87 +48,78 @@ h1 {
 
 /* 홈 링크 스타일 */
 .home-link {
-    color: white;
-    text-decoration: none;
+    color: white; /* 흰색 */
+    text-decoration: none; /* 밑줄 제거 */
 }
 
-/* project-list-styles.css */
-.container {
-    text-align: center;
-    margin-top: 70px; /* 상단바와 겹치지 않도록 조정 */
+/* 예시로 내용 추가 */
+.main-content {
+    margin-top: 1.9cm; /* 상단 바와 겹치지 않도록 페이지 컨텐츠의 여백을 조정 */
     padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    width: 30%;
 }
 
-/* project-list-styles.css */
-.project-list table {
-    border-collapse: collapse;
+.create-button[type="submit"] {
+    padding: 7px 20px;
+    background-color: #050101; /* 배경색 */
+    color: white; /* 글자색 */
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive; /* 폰트 */
+    font-size: 15px; /* 폰트 크기 */
+}
+
+.create-button[type="submit"]:hover {
+    background-color: #0056b3; /* 마우스 호버시 배경색 */
+}
+/* project-liststyles.css */
+table {
     width: 100%;
-    margin-top: 20px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
-.project-list table th,
-.project-list table td {
-    border: 1px solid #ddd;
-    padding: 12px;
+th,
+td {
+    padding: 15px;
+    background-color: rgba(255,255,255,0.2);
+    color: #000;
+}
+
+th {
     text-align: left;
-    font-size: 16px; /* 글꼴 크기 설정 */
 }
 
-.project-list table th {
-    background-color: #f2f2f2;
-    font-weight: bold; /* 헤더 텍스트를 두껍게 설정 */
+thead {
+    th {
+        background-color: #55608f;
+        color: #FFFFFF;
+    }
 }
 
-.project-list table tr:hover {
-    background-color: #f9f9f9;
+tbody {
+    tr {
+        &:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+    }
+    td {
+        position: relative;
+        &:hover {
+            &:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: -9999px;
+                bottom: -9999px;
+                background-color: rgba(255,255,255,0.2);
+                z-index: -1;
+            }
+        }
+    }
 }
-
-.project-list table td:first-child {
-    width: 50px;
-}
-
-.project-list table i {
-    margin-right: 5px;
-}
-
-.project-list button {
-    padding: 10px 20px;
-    background-color: #396ac8;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px; /* 버튼 텍스트 크기 설정 */
-    transition: background-color 0.3s; /* 호버 시 색상 변경 애니메이션 추가 */
-}
-
-.project-list button:hover {
-    background-color: #304e87; /* 호버 시 배경색 변경 */
-}
-
-.container {
-    text-align: center;
-    margin-top: 50px;
-}
-
-/* project-list-styles.css */
-
-/* project-list-styles.css */
-
-.back {
-    padding: 10px 20px;
-    background-color: #ccc;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.back:hover {
-    background-color: #bbb;
-}
-
-
-
