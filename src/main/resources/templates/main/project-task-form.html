@@ -49,6 +49,13 @@
     <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone'}">
         <button type="submit" class="create-button">진척도 등록</button>
     </form>
+
+    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tag'}">
+        <button type="submit" class="create-button">태그 등록</button>
+    </form>
+    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tasks/register'}">
+        <button type="submit" class="create-button">게시글 등록</button>
+    </form>
 </div>
 </body>
 </html>

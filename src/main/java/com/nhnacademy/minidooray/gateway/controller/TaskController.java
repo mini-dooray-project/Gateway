@@ -1,11 +1,17 @@
 package com.nhnacademy.minidooray.gateway.controller;
 
+import com.nhnacademy.minidooray.gateway.domain.TaskRegister;
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
+import com.nhnacademy.minidooray.gateway.model.AccountResponse;
 import com.nhnacademy.minidooray.gateway.model.MilestoneResponse;
 import com.nhnacademy.minidooray.gateway.model.TagResponse;
 import com.nhnacademy.minidooray.gateway.model.TaskResponse;
 import com.nhnacademy.minidooray.gateway.service.TaskService;
+import com.nhnacademy.minidooray.gateway.util.CookieUtil;
 import java.util.List;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -59,8 +65,16 @@ public class TaskController {
 
     @PostMapping("/{projectId}/tasks/register")
     public String doRegisterTask(@PathVariable Long projectId,
+                                 TaskRegister taskRegister,
+                                 HttpServletRequest request,
                                  ModelMap modelMap) {
-//        taskService.createTask();
+        log.info("milestone value:{}", taskRegister.getMilestone());
+
+        HttpSession session = request.getSession(false);
+        Cookie cookie = CookieUtil.getCookie(request.getCookies(), "login");
+        AccountResponse account = (AccountResponse) session.getAttribute(cookie.getValue());
+
+        taskService.createTask(taskRegister, account, projectId);
 
         return "redirect:/";
     }

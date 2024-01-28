@@ -1,2 +1,4 @@
-package com.nhnacademy.minidooray.gateway.service;public interface CommentService {
+package com.nhnacademy.minidooray.gateway.service;
+
+public interface CommentService {
 }

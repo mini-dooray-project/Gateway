@@ -3,6 +3,7 @@ package com.nhnacademy.minidooray.gateway.service;
 import com.nhnacademy.minidooray.gateway.domain.Comment;
 import com.nhnacademy.minidooray.gateway.domain.TaskRegister;
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
+import com.nhnacademy.minidooray.gateway.model.AccountResponse;
 import com.nhnacademy.minidooray.gateway.model.MilestoneResponse;
 import com.nhnacademy.minidooray.gateway.model.TagResponse;
 import com.nhnacademy.minidooray.gateway.model.TaskResponse;
@@ -13,7 +14,7 @@ public interface TaskService {
 
     TaskResponse getTask(Long taskId);
 
-    void createTask(TaskRegister taskRegister);
+    void createTask(TaskRegister taskRegister, AccountResponse account, Long projectId);
 
     List<Comment> getComments(Long taskID);
 

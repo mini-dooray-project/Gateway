@@ -1,2 +1,12 @@
-package com.nhnacademy.minidooray.gateway.domain;public class TaskTagModifyRequest {
+package com.nhnacademy.minidooray.gateway.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class TaskTagModifyRequest {
+    private Long tagId;
 }
