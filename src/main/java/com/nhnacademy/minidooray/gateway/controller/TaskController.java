@@ -60,7 +60,7 @@ public class TaskController {
     @PostMapping("/{projectId}/tasks/register")
     public String doRegisterTask(@PathVariable Long projectId,
                                  ModelMap modelMap) {
-        taskService.createTask();
+//        taskService.createTask();
 
         return "redirect:/";
     }
