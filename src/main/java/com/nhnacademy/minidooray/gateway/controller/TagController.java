@@ -42,13 +42,23 @@ public class TagController {
         return "project-register-tag-task-form";
     }
 
-    @GetMapping("/{projectId}/tag/{tagId}/modify")
+    @GetMapping("/{projectId}/{tagId}/modify")
     public String viewModifyForm(@PathVariable(name = "projectId") Long projectId,
                                  @PathVariable(name = "tagId") Long tagId,
                                  ModelMap modelMap) {
 
         modelMap.addAttribute("tagId", tagId);
+        modelMap.addAttribute("projectId", projectId);
         return "project-register-tag-modify-form";
+    }
+
+    @PostMapping("/{projectId}/{tagId}/modify")
+    public String doModifyTag(@PathVariable(name = "projectId") Long projectId,
+                              @PathVariable(name = "tagId") Long tagId,
+                              TagRequest tagRequest) {
+        tagService.updateTag(tagId, tagRequest);
+
+        return "redirect:/client/projects/" + projectId + "/tasks/tag";
     }
 
     @PostMapping("/{projectId}/tag/{tagId}/delete")

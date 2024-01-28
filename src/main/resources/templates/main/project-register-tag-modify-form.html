@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>태그 수정</title>
 </head>
 <body>
+<h1>
+    태그 수정 화면
+</h1>
 
+<form method="post" th:action="@{'/client/projects/'+${projectId}+'/'+${tagId}+'/modify'}">
+    <input type="hidden" th:value="${projectId}">
+    <span>태그 이름</span>
+    <input type="text" name="tagName">
+    <button type="submit">수정하기</button>
+</form>
 </body>
 </html>

@@ -13,7 +13,7 @@
         <button type="submit">삭제</button>
     </form>
 
-    <form method="get" th:action="@{'/client/projects/'+${projectId}+'/tag/modify'}">
+    <form method="get" th:action="@{'/client/projects/'+${projectId}+'/'+${tag.tagId}+'/modify'}">
         <button type="submit">수정</button>
     </form>
         </span>
