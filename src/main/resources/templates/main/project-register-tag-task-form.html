@@ -5,9 +5,18 @@
     <title>프로젝트에 등록된 태그</title>
 </head>
 <body>
+<h1>태그 목록</h1>
 <div th:each="tag : ${tagList}">
-    <span th:text="${tag.tagName}"></span>
+    <span>
+    <form method="post" th:action="@{'/client/projects/'+${projectId}+'/tag/'+${tag.tagId}+'/delete'}">
+        <span th:text="${tag.tagName}"></span>
+        <button type="submit">삭제</button>
+    </form>
 
+    <form method="get" th:action="@{'/client/projects/'+${projectId}+'/tag/modify'}">
+        <button type="submit">수정</button>
+    </form>
+        </span>
 </div>
 </body>
 </html>

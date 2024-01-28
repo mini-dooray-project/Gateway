@@ -44,6 +44,6 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public void deleteTag(Long tagId) {
-
+        tagAdaptor.deleteTag(tagId);
     }
 }
