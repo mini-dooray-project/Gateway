@@ -3,10 +3,7 @@ package com.nhnacademy.minidooray.gateway.service;
 import com.nhnacademy.minidooray.gateway.domain.Comment;
 import com.nhnacademy.minidooray.gateway.domain.TaskRegister;
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
-import com.nhnacademy.minidooray.gateway.model.AccountResponse;
-import com.nhnacademy.minidooray.gateway.model.MilestoneResponse;
-import com.nhnacademy.minidooray.gateway.model.TagResponse;
-import com.nhnacademy.minidooray.gateway.model.TaskResponse;
+import com.nhnacademy.minidooray.gateway.model.*;
 import java.util.List;
 
 public interface TaskService {
@@ -16,11 +13,18 @@ public interface TaskService {
 
     void createTask(TaskRegister taskRegister, AccountResponse account, Long projectId);
 
-    List<Comment> getComments(Long taskID);
-
     List<TagResponse> getTagByProjectId(Long projectID);
 
     List<MilestoneResponse> getMilestones(Long projectId);
+
+
+    List<Comment> getComments(Long taskID);
+    
+    CommentResponse createComment();
+
+    CommentResponse updateComment();
+
+    void deleteComment();
 
 
 }

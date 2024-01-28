@@ -69,11 +69,6 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Comment> getComments(Long taskID) {
-        return null;
-    }
-
-    @Override
     public List<TagResponse> getTagByProjectId(Long projectId) {
         return tagAdaptor.getTagByProjectId(projectId);
     }
@@ -81,5 +76,25 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<MilestoneResponse> getMilestones(Long projectId) {
         return milestoneAdaptor.getMilestoneByProjectId(projectId);
+    }
+
+    @Override
+    public List<Comment> getComments(Long taskID) {
+        return null;
+    }
+
+    @Override
+    public CommentResponse createComment() {
+        return null;
+    }
+
+    @Override
+    public CommentResponse updateComment() {
+        return null;
+    }
+
+    @Override
+    public void deleteComment() {
+
     }
 }
