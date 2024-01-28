@@ -13,4 +13,6 @@ public interface ProjectMemberAdaptor {
     ProjectMemberResponse createMember(ProjectMemberRegisterRequest projectMemberRegisterRequest);
 
     ProjectMemberResponse updateMember(String memberId, Long projectId, ProjectMemberModifyRequest request);
+
+    Boolean authorityMember(String memberId, Long projectId);
 }
