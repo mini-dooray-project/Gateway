@@ -26,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> participationProject(AccountResponse response) {
         List<Project> projects = new ArrayList<>();
-        List<ProjectMemberResponse> projectMemberResponses = projectMemberAdaptor.getProjects(response.getId());
+        List<ProjectMemberResponse> projectMemberResponses = projectMemberAdaptor.getMembersByMemberId(response.getId());
         for (ProjectMemberResponse memberResponse : projectMemberResponses) {
             ProjectResponse projectResponse = projectAdaptor.getProject(memberResponse.getProjectId());
             projects.add(new Project(projectResponse.getProjectId(), projectResponse.getProjectName(),

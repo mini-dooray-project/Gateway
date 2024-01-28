@@ -33,4 +33,13 @@ public class CommentController {
         taskService.createComment(registerComment, taskId, accountResponse.getId());
         return "redirect:/client/projects/" + projectId + "/tasks/" + taskId;
     }
+
+    @PostMapping("/{projectId}/tasks/{taskId}/comment/{commentId}")
+    public String doDeleteComment(@PathVariable(name = "taskId") Long taskId,
+                                  @PathVariable(name = "projectId") Long projectId,
+                                  @PathVariable(name = "commentId") Long commentId
+    ) {
+        taskService.deleteComment(commentId);
+        return "redirect:/client/projects/" + projectId + "/tasks/" + taskId;
+    }
 }

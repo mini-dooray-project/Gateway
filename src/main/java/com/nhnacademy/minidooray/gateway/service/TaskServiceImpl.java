@@ -85,7 +85,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void createComment(RegisterComment comment, Long taskId, String registrantAccount) {
-      
+
         CommentRequest commentRequest = new CommentRequest(taskId, registrantAccount, comment.getContent());
         commentAdaptor.createComment(commentRequest);
 
@@ -96,7 +96,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteComment() {
+    public void deleteComment(Long taskId) {
+        commentAdaptor.deleteComment(taskId);
 
     }
 }

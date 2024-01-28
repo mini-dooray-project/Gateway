@@ -23,7 +23,7 @@ public interface TaskService {
 
     void updateComment();
 
-    void deleteComment();
+    void deleteComment(Long taskId);
 
 
 }

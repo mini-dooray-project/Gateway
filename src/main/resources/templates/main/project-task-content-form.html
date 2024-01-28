@@ -25,11 +25,16 @@
     </form>
 
 
-    <!--    댓글창-->
     <div class="review-list-content">댓글 보이는 곳
         <ul>
-            <li th:each="comment : ${comments}" th:text="${comment.registrantAccount}+': '+${comment.content}"></li>
+            <li th:each="comment : ${comments}">
+                <form method="post" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/comment/'+${comment.commentId}}">
+                    <span th:text="${comment.registrantAccount} + ': ' + ${comment.content}"></span>
+                    <button type="submit" class="review-button">삭제</button>
+                </form>
+            </li>
         </ul>
+
     </div>
     <div class="review-content">
         <form method="post" th:action="@{'/client/projects/'+${projectId}+'/tasks/'+${taskId}+'/comment'}">
@@ -38,6 +43,6 @@
         </form>
     </div>
 
-</div>
+   </div>
 </body>
 </html>

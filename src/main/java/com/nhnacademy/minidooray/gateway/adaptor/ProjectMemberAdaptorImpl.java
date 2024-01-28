@@ -21,7 +21,7 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
     }
 
     @Override
-    public List<ProjectMemberResponse> getProjects(String memberId) {
+    public List<ProjectMemberResponse> getMembersByMemberId(String memberId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -41,7 +41,7 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
     }
 
     @Override
-    public List<ProjectMemberResponse> getMembers(Long projectId) {
+    public List<ProjectMemberResponse> getMembersByProjectId(Long projectId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -49,7 +49,7 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
         //responseEntity
-        ResponseEntity<List<ProjectMemberResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/project/{projectId}",
+        ResponseEntity<List<ProjectMemberResponse>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/api/members/projects/{projectId}",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
@@ -73,7 +73,7 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor {
                 requestEntity,
                 new ParameterizedTypeReference<>() {
                 });
-       
+
         return exchange.getBody();
     }
 

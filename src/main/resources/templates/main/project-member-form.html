@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Project-Member-List</title>
 </head>
 <body>
-$END$
+<div th:each="projectMember : ${projectMembers}">
+    <span th:text="${projectMember.memberId}"></span>
+</div>
+<form method="get" th:action="@{'/client/projects/'+${projectId}+'/member/register'}">
+    <button type="submit">멤버 등록하기</button>
+</form>
 </body>
 </html>
