@@ -1,2 +1,4 @@
-package com.nhnacademy.minidooray.gateway.adaptor;public interface TaskTagAdaptor {
+package com.nhnacademy.minidooray.gateway.adaptor;
+
+public interface TaskTagAdaptor {
 }

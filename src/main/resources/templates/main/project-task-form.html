@@ -42,5 +42,10 @@
 <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tag'}">
     <button type="submit">태그 등록</button>
 </form>
+
+
+<form method="get" th:action="@{'/client/projects/'+${projectId}+'/tasks/register'}">
+    <button type="submit">업무 등록</button>
+</form>
 </body>
 </html>

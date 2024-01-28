@@ -1,6 +1,8 @@
 package com.nhnacademy.minidooray.gateway.controller;
 
 import com.nhnacademy.minidooray.gateway.domain.TaskViewModel;
+import com.nhnacademy.minidooray.gateway.model.MilestoneResponse;
+import com.nhnacademy.minidooray.gateway.model.TagResponse;
 import com.nhnacademy.minidooray.gateway.model.TaskResponse;
 import com.nhnacademy.minidooray.gateway.service.TaskService;
 import java.util.List;
@@ -44,13 +46,22 @@ public class TaskController {
         return "project-task-content-form";
     }
 
-    @GetMapping("/tasks/register")
-    public String viewRegisterForm() {
+    @GetMapping("/{projectId}/tasks/register")
+    public String viewRegisterForm(@PathVariable Long projectId,
+                                   ModelMap modelMap) {
+
+        List<TagResponse> tagResponses = taskService.getTagByProjectId(projectId);
+        List<MilestoneResponse> milestoneResponses = taskService.getMilestones(projectId);
+        modelMap.addAttribute("tagList", tagResponses);
+        modelMap.addAttribute("milestones", milestoneResponses);
         return "project-task-register-form";
     }
 
-    @PostMapping("/tasks/register")
-    public String doRegisterTask(ModelMap modelMap) {
+    @PostMapping("/{projectId}/tasks/register")
+    public String doRegisterTask(@PathVariable Long projectId,
+                                 ModelMap modelMap) {
+        taskService.createTask();
+
         return "redirect:/";
     }
 }

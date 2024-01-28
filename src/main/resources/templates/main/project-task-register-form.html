@@ -6,12 +6,25 @@
 </head>
 <body>
 <h1>글 작성</h1>
-<form method="post" action="/client/projects/tasks/register">
-    <span>제목</span><input type="text"></br>
-    <span>내용</span><input type="text"></br>
-    <span>진척도</span><input type="text"></br>
-    <span>태그</span><input type="text"></br>
+<form method="post"th:action="@{'/client/projects/'+${projectId}+'/tasks/register'}">
+    <span>제목</span><input type="text" name="title"></br>
+    <span>내용</span><input type="text" name="content"></br>
 
+    <span>진척도</span>
+    <div th:each="milestone : ${milestones}">
+        <input type="radio" th:value="${milestone.milestoneName}" name="milestone" th:id="${'milestone_' + milestone.milestoneId}">
+        <label th:for="${'milestone_' + milestone.milestoneId}" th:text="${milestone.milestoneName}"></label>
+    </div>
+    <span>태그</span>
+    <div th:each="tag : ${tagList}">
+        <input type="checkbox" th:value="${tag}" name="tags" th:id="${'tag_' + tag.tagId}">
+        <label th:for="${'tag_' + tag.tagId}" th:text="${tag.tagName}"></label>
+    </div>
+    <button type="submit">등록하기</button>
+</form>
+
+<form method="get" th:action="@{'/client/projects/'+${projectId}}">
+    <button type="submit">취소하기</button>
 </form>
 </body>
 </html>
