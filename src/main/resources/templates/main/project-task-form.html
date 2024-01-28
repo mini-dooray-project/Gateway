@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>project-list</title>
+    <title>project-task</title>
     <link rel="stylesheet" type="text/css" href="/project-taskstyles.css">
 </head>
 <body>
@@ -17,6 +17,18 @@
     <span>
     <h2>전체 업무</h2>
   </span>
+    <br>
+    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone'}" style="display: inline-block;">
+        <button type="submit" class="milestone-button">진척도 등록</button>
+    </form>
+    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tag'}" style="display: inline-block;">
+        <button type="submit" class="tag-button">태그 등록</button>
+    </form>
+
+    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/tasks/register'}" style="display: inline-block; margin-right: 10px;">
+        <button type="submit" class="register-button">게시글 등록</button>
+    </form>
+
     <table>
         <thead>
         <tr>
@@ -41,14 +53,10 @@
         </tr>
         </tbody>
     </table>
-    <br><br>
-    <form method="get" action="/client/projects">
-        <button type="submit" class="create-button">뒤로가기</button>
-    </form>
     <br>
-    <form method="get" th:action="@{'/client/projects/' + ${projectId}+'/milestone'}">
-        <button type="submit" class="create-button">진척도 등록</button>
-    </form>
+        <form method="get" action="/client/projects">
+            <button type="submit" class="back-button">뒤로가기</button>
+        </form>
 </div>
 </body>
 </html>

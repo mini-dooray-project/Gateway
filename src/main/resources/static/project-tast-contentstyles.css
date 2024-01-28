@@ -55,116 +55,26 @@ body {
 /* 예시로 내용 추가 */
 .main-content {
     margin-top: 1.9cm; /* 상단 바와 겹치지 않도록 페이지 컨텐츠의 여백을 조정 */
-    padding: 20px;
+    padding: 0px;
     background-color: #f4f4f4;
     border-radius: 5px;
     width: 30%;
 }
 
-.back-button[type="submit"] {
-    padding: 7px 20px;
-    background-color: #050101; /* 배경색 */
-    color: white; /* 글자색 */
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    font-family: 'Comic Sans MS', cursive; /* 폰트 */
-    font-size: 15px; /* 폰트 크기 */
+.title {
+    font-size: 25px;
 }
 
-.back-button[type="submit"]:hover {
-    background-color: #0056b3; /* 마우스 호버시 배경색 */
-}
-
-/* project-taskstyles.css */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 1rem auto;
+.content{
     background-color: white;
-    overflow: hidden;
-}
-
-thead {
-    background-color: #f4f4f4;
-    color: white;
-    text-align: center;
-}
-
-/* 테이블 행 */
-td {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
+    border-radius: 10px;
+    width: 100%;
+    min-height: 100px;
 }
 
-th {
-    padding: 8px;
-    border-top: 3px solid #000000;
-    border-bottom: 2px solid #000000;
-    color: #000;
-    text-align: center;
-}
-
-/* 테이블 올렸을 때 */
-tbody tr:hover {
-    background-color: #d3d3d3;
-    opacity: 0.9;
-    cursor: pointer;
-}
-
-/* 테이블 비율 */
-th:nth-child(1),
-td:nth-child(1) {
-    width: 15%;
-}
-
-th:nth-child(2),
-td:nth-child(2) {
-    width: 55%;
-}
-
-th:nth-child(3),
-td:nth-child(3) {
-    width: 30%;
-}
-
-th, td {
-    border-left: none;
-    border-right: none;
-}
-
-.milestone-button[type="submit"] {
-    padding: 6px 10px;
-    background-color: #ff5858; /* 배경색 */
-    color: white; /* 글자색 */
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    font-family: 'Comic Sans MS', cursive; /* 폰트 */
-    font-size: 13px; /* 폰트 크기 */
-}
-
-.milestone-button[type="submit"]:hover {
-    background-color: #ba4141; /* 마우스 호버시 배경색 */
-}
-
-.tag-button[type="submit"] {
-    padding: 6px 10px;
-    background-color: #ffd25b; /* 배경색 */
-    color: white; /* 글자색 */
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    font-family: 'Comic Sans MS', cursive; /* 폰트 */
-    font-size: 13px; /* 폰트 크기 */
-}
-
-.tag-button[type="submit"]:hover {
-    background-color: #b79842; /* 마우스 호버시 배경색 */
-}
-
-.register-button[type="submit"] {
+.modify-button[type="submit"] {
+    margin-top: 10px;
     padding: 6px 10px;
     background-color: #50c471; /* 배경색 */
     color: white; /* 글자색 */
@@ -175,11 +85,52 @@ th, td {
     font-size: 13px; /* 폰트 크기 */
 }
 
-.register-button[type="submit"]:hover {
+.modify-button[type="submit"]:hover {
     background-color: #409b5a; /* 마우스 호버시 배경색 */
 }
 
-/* 여백 설정 */
-tbody tr {
-    margin-bottom: 10px; /* 각 행의 아래 여백 설정 */
+.review-list-content {
+    margin-top: 5px;
+    width: 100%; /* 너비 설정 */
+    border: #f4f4f4; /* 테두리 설정 */
+    font-size: 13px; /* 폰트 크기 설정 */
+    color: #333; /* 글자색 설정 */
+    background-color: white;
+    padding: 10px;
+    min-height: 80px;
+    border-radius: 10px;
+}
+
+.review-content input[type="text"] {
+    margin-top: 30px;
+    width: 80%; /* 너비 설정 */
+    border: #f4f4f4; /* 테두리 설정 */
+    font-size: 13px; /* 폰트 크기 설정 */
+    color: #333; /* 글자색 설정 */
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    min-height: 17px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-content input[type="text"]::placeholder {
+    color: #999; /* 플레이스홀더 색상 설정 */
+}
+
+.review-button[type="submit"] {
+    margin-top: 15px;
+    padding: 6px 10px;
+    background-color: #000000; /* 배경색 */
+    color: white; /* 글자색 */
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive; /* 폰트 */
+    font-size: 13px; /* 폰트 크기 */
+    loat: left;
+}
+
+.review-button[type="submit"]:hover {
+    background-color: #1148b0; /* 마우스 호버시 배경색 */
 }
