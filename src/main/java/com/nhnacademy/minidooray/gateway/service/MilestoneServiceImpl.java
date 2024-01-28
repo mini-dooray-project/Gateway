@@ -29,10 +29,10 @@ public class MilestoneServiceImpl implements MilestoneService {
     }
 
     @Override
-    public void updateMilestone(MilestoneRegister milestoneRegister, Long projectId) {
+    public void updateMilestone(MilestoneRegister milestoneRegister, Long projectId, Long milestoneId) {
         MilestoneRequest milestoneRequest = new MilestoneRequest(projectId, milestoneRegister.getMilestoneName(),
                 milestoneRegister.getStartDate(), milestoneRegister.getMilestoneExpireDate());
-        milestoneAdaptor.updateMilestone(projectId, milestoneRequest);
+        milestoneAdaptor.updateMilestone(milestoneId, milestoneRequest);
     }
 
 

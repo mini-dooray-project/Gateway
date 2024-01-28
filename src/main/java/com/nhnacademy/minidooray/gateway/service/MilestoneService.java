@@ -10,7 +10,7 @@ public interface MilestoneService {
 
     void createMilestone(MilestoneRegister milestoneRegister, Long projectId);
 
-    void updateMilestone(MilestoneRegister milestoneRegister, Long projectId);
+    void updateMilestone(MilestoneRegister milestoneRegister, Long projectId, Long milestoneId);
 
     void deleteMilestone(Long milestoneId);
 

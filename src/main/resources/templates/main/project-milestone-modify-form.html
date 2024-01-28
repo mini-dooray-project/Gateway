@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>진척도 수정</title>
+</head>
+<body>
+<h1>진척도 수정</h1>
+<form id="taskForm" method="post" th:action="@{'/client/projects/'+${projectId}+'/milestone/'+${milestoneId}+'/modify'}">
+    <span>진척도 이름</span>
+    <input type="text" name="milestoneName"></br>
+    <span>시작 날짜</span>
+    <input type="datetime-local" name="startDate"></br>
+    <span>마무리 날짜</span>
+    <input type="datetime-local" name="milestoneExpireDate"></br>
+
+    <button type="submit" >수정</button>
+</form>
+<a th:href="@{'/client/projects/' + ${projectId}}"></a>
+
+</body>
+</html>

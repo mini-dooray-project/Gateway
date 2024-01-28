@@ -51,7 +51,6 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
 
     @Override
     public Boolean authorityMember(String memberId, Long projectId) {
-//        return projectMemberAdaptor.authorityMember(memberId, projectId);
-        return false;
+        return memberAdaptor.authorityMember(memberId, projectId);
     }
 }

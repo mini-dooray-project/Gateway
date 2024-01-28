@@ -13,7 +13,7 @@
         <span th:text="${milestone.milestoneName}"></span>
         <button type="submit">삭제</button>
     </form>
-    <form method="get" th:action="@{'/client/projects/'+${projectId}+'/milestone/modify'}">
+    <form method="get" th:action="@{'/client/projects/'+${projectId}+'/milestone/'+${milestone.milestoneId}+'/modify'}">
         <button type="submit">수정</button>
     </form>
 </div>

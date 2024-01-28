@@ -27,13 +27,20 @@ public class ProjectAuthorityCheckInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
         Pattern pattern = Pattern.compile("/projects/(\\d+)");
         Matcher matcher = pattern.matcher(uri);
-        String projectId = matcher.group(1);
+        String projectId = "";
+        while (matcher.find()) {
+            projectId = matcher.group(1);
+        }
 
         Cookie cookie = CookieUtil.getCookie(request.getCookies(), "login");
         HttpSession session = request.getSession(false);
         AccountResponse account = (AccountResponse) session.getAttribute(cookie.getValue());
 
-        System.out.println("blocked!!!");
-        return projectMemberService.authorityMember(account.getId(), Long.parseLong(projectId));
+        Boolean authoritied = projectMemberService.authorityMember(account.getId(), Long.parseLong(projectId));
+        if (authoritied) {
+            return true;
+        }
+        response.sendRedirect("/client/projects");
+        return false;
     }
 }

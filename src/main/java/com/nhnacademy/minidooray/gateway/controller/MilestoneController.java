@@ -56,6 +56,16 @@ public class MilestoneController {
         return "project-milestone-view-form";
     }
 
+    @GetMapping("/{projectId}/milestone/{milestoneId}/modify")
+    public String viewModifyMilestone(@PathVariable(name = "projectId") Long projectId,
+                                      @PathVariable(name = "milestoneId") Long milestoneId,
+                                      ModelMap modelMap) {
+
+        modelMap.addAttribute("projectId", projectId);
+        modelMap.addAttribute("milestoneId", milestoneId);
+        return "project-milestone-modify-form";
+    }
+
     @PostMapping("/{projectId}/milestone/{milestoneId}/delete")
     public String doDeleteMilestone(@PathVariable(name = "projectId") Long projectId,
                                     @PathVariable(name = "milestoneId") Long milestoneId,
@@ -64,5 +74,17 @@ public class MilestoneController {
         modelMap.addAttribute("projectId", projectId);
         return "redirect:/client/projects/" + projectId + "/milestone/view";
     }
+
+    @PostMapping("/{projectId}/milestone/{milestoneId}/modify")
+    public String doModifyMilestone(@PathVariable(name = "projectId") Long projectId,
+                                    @PathVariable(name = "milestoneId") Long milestoneId,
+                                    MilestoneRegister milestoneRegister,
+                                    ModelMap modelMap) {
+        milestoneService.updateMilestone(milestoneRegister, projectId, milestoneId);
+        modelMap.addAttribute("projectId", projectId);
+        modelMap.addAttribute("milestoneId", milestoneId);
+        return "redirect:/client/projects/" + projectId + "/milestone/view";
+    }
+
 
 }
